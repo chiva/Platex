@@ -2,7 +2,7 @@
 
 import logging, serial
 from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget
-from PyQt4.QtCore import SIGNAL, SLOT, QTimer, QString
+from PyQt4.QtCore import SIGNAL, SLOT, QTimer, QString, pyqtSlot
 
 from pyfirmata import Board
 from pyfirmata.boards import BOARDS
@@ -18,7 +18,7 @@ class SelectPortDlg(QDialog):
         self.connectBtn.setEnabled(False)
         self.programBtn = QPushButton("&Programar")
         self.programBtn.setEnabled(False)
-        self.exitBtn = QPushButton("Salir")
+        exitBtn = QPushButton("Salir")
         multiLbl = QLabel("Selecciona la placa:")
         self.portsCmb = QComboBox()
         self.portsCmb.addItem("Actualizar")
@@ -41,8 +41,8 @@ class SelectPortDlg(QDialog):
         buttonLayout.addWidget(self.connectBtn)
         buttonLayout.addWidget(self.programBtn)
         buttonLayout.addStretch()
-        buttonLayout.addWidget(self.exitBtn)
-        self.exitBtn.setFocus()
+        buttonLayout.addWidget(exitBtn)
+        exitBtn.setFocus()
         
         layout = QVBoxLayout()
         layout.addWidget(self.stackedWidget)
@@ -52,12 +52,13 @@ class SelectPortDlg(QDialog):
         self.boards = list()
         self.board = None
         #self.connect(self.programBtn, SIGNAL("clicked()"), self.setPath)
-        self.connect(self.portsCmb, SIGNAL("currentIndexChanged(int)"), self.updatePorts)
-        self.connect(self.connectBtn, SIGNAL("clicked()"), self.connectBoard)
-        self.connect(self.exitBtn, SIGNAL("clicked()"), self, SLOT("reject()"))
+        self.portsCmb.currentIndexChanged[int].connect(self.updatePorts)
+        self.connectBtn.clicked[bool].connect(self.connectBoard)
+        exitBtn.clicked.connect(self.reject)
         self.setWindowTitle(u"Iniciando comunicación")
         self.updatePorts()
     
+    @pyqtSlot()
     def updatePorts(self):
         if self.portsCmb.currentText() != QString("Actualizar"):
             return
@@ -81,6 +82,7 @@ class SelectPortDlg(QDialog):
             self.connectBtn.setEnabled(True)
             self.programBtn.setEnabled(True)
     
+    @pyqtSlot()
     def connectBoard(self):
         try:
             board = Board(unicode(self.portsCmb.currentText()), BOARDS['arduino'])
