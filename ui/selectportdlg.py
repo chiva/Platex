@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import logging
+import logging, serial
 from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget
-from PyQt4.QtCore import pyqtSignature, SIGNAL, SLOT, QTimer, QReadWriteLock
+from PyQt4.QtCore import SIGNAL, SLOT, QTimer, QString
 
-from pyfirmata import util
+from pyfirmata import Board
+from pyfirmata.boards import BOARDS
 
 logger = logging.getLogger(__name__)
 
@@ -13,29 +14,32 @@ class SelectPortDlg(QDialog):
         logging.debug("Port selection dialog created")
         super(SelectPortDlg, self).__init__(parent)
         self.statusLb = QLabel()
-        self.updateBtn = QPushButton("Actualizar")
-        self.updateBtn.setEnabled(False)
-        programBtn = QPushButton("&Programar")
+        self.connectBtn = QPushButton("&Conectar")
+        self.connectBtn.setEnabled(False)
+        self.programBtn = QPushButton("&Programar")
+        self.programBtn.setEnabled(False)
         self.exitBtn = QPushButton("Salir")
         multiLbl = QLabel("Selecciona la placa:")
         self.portsCmb = QComboBox()
+        self.portsCmb.addItem("Actualizar")
         
         self.stackedWidget = QStackedWidget()
         mainWidget = QWidget()
         mainLayout = QHBoxLayout()
-        mainLayout.addWidget(self.statusLb)
+        mainLayout.addWidget(multiLbl)
+        mainLayout.addWidget(self.portsCmb)
         mainWidget.setLayout(mainLayout)
         self.stackedWidget.addWidget(mainWidget)
-        multiWidget = QWidget()
-        multiLayout = QHBoxLayout()
-        multiLayout.addWidget(multiLbl)
-        multiLayout.addWidget(self.portsCmb)
-        multiWidget.setLayout(multiLayout)
-        self.stackedWidget.addWidget(multiWidget)
+        progWidget = QWidget()
+        progLayout = QHBoxLayout()
+        progLayout.addWidget(self.statusLb)
+        progLayout.addStretch()
+        progWidget.setLayout(progLayout)
+        self.stackedWidget.addWidget(progWidget)
         
         buttonLayout = QHBoxLayout()
-        buttonLayout.addWidget(self.updateBtn)
-        buttonLayout.addWidget(programBtn)
+        buttonLayout.addWidget(self.connectBtn)
+        buttonLayout.addWidget(self.programBtn)
         buttonLayout.addStretch()
         buttonLayout.addWidget(self.exitBtn)
         self.exitBtn.setFocus()
@@ -45,56 +49,48 @@ class SelectPortDlg(QDialog):
         layout.addLayout(buttonLayout)
         self.setLayout(layout)
         
-        self.lock = QReadWriteLock()
         self.boards = list()
-        self.searcher = util.SearchBoard(self.lock, self)
-        self.connect(self.searcher, SIGNAL("finished(bool)"), self.finishedSearching)
+        self.board = None
         #self.connect(self.programBtn, SIGNAL("clicked()"), self.setPath)
-        self.connect(self.updateBtn, SIGNAL("clicked()"), self.startSearch)
+        self.connect(self.portsCmb, SIGNAL("currentIndexChanged(int)"), self.updatePorts)
+        self.connect(self.connectBtn, SIGNAL("clicked()"), self.connectBoard)
         self.connect(self.exitBtn, SIGNAL("clicked()"), self, SLOT("reject()"))
         self.setWindowTitle(u"Iniciando comunicación")
-        self.startSearch()
-
-    def startSearch(self):
-        self.stackedWidget.setCurrentIndex(0)
+        self.updatePorts()
+    
+    def updatePorts(self):
+        if self.portsCmb.currentText() != QString("Actualizar"):
+            return
+        logger.debug("Searching existing serial ports")
+        self.connectBtn.setEnabled(False)
+        self.programBtn.setEnabled(False)
+        ports = []
+        for i in xrange(256):
+            try:
+                s = serial.Serial(i)
+                ports.append(s.portstr)
+                s.close()
+            except serial.SerialException:
+                pass
+        logger.debug("Found %d serial port(s): %s", len(ports), ports)
+        if not len(ports): ports = [""]
         self.portsCmb.clear()
-        self.statusLb.setText("Buscando placa Arduino...")
-        # Close all serial ports and delete all objects from past executions
-        while self.boards:
-            board = self.boards.pop()
-            board.exit()
-            del board
-        self.updateBtn.setEnabled(False)
-        self.searcher.initialize(self.boards)
-        self.searcher.start()
-
-    def finishedSearching(self):
-        self.searcher.wait()
-        self.updateBtn.setEnabled(True)
-        if not self.boards:
-            self.statusLb.setText(u"No se ha detectado ningún Arduino")
+        self.portsCmb.addItems(ports)
+        self.portsCmb.addItem("Actualizar")
+        if self.portsCmb.currentText() != QString(""):
+            self.connectBtn.setEnabled(True)
+            self.programBtn.setEnabled(True)
+    
+    def connectBoard(self):
+        try:
+            board = Board(unicode(self.portsCmb.currentText()), BOARDS['arduino'])
+        except ValueError, e:
+            logger.warning(str(e))
+        except TypeError, e:
+            logger.debug(str(e))
         else:
-            self.statusLb.setText(u"Se ha detectado %d Arduino")
-            if len(self.boards) == 1:
-                self.board = self.boards[0]
-                QDialog.accept(self)
-            else:
-                self.stackedWidget.setCurrentIndex(1)
-                self.portsCmb.addItems([x.sp.port for x in self.boards])
-                #Connect combobox selection to 
-
-    def reject(self):
-        logging.debug("Called reject")
-        if self.searcher.isRunning():
-            self.searcher.stop()
-            self.finishedSearching()
-        else:
+            self.board = board
             self.accept()
-
-    def closeEvent(self, event=None):
-        logging.debug("Close event")
-        self.searcher.stop()
-        self.searcher.wait()
 
     def getBoard(self):
         return self.board

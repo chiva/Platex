@@ -1,80 +1,39 @@
-from PyQt4.QtCore import QThread, QMutex, QMutexLocker, QWriteLocker, SIGNAL
-
-import threading, serial, time, os, logging
+import threading
+import serial
+import time
+import os
 import pyfirmata
 from boards import BOARDS
 
-logger = logging.getLogger(__name__)
-
-class SearchBoard(QThread):
-    def __init__(self, lock, parent=None):
-        super(SearchBoard, self).__init__(parent)
-        self.lock = lock
-        self.stopped = False
-        self.mutex = QMutex()
-        self.completed = False
-    
-    def initialize(self, boards, layout=BOARDS['arduino']):
-        self.layout = layout
-        self.boards = boards
-        self.stopped = False
-        self.completed = False
-    
-    def run(self):
-        logging.debug("SearchBoard thread started")
-        self.getBoard()
-        self.stop()
-        self.emit(SIGNAL("finished(bool)"), self.completed)
-    
-    def stop(self):
-        with QMutexLocker(self.mutex):
-            self.stopped = True
-        logging.debug("SearchBoard thread stopped")
-         
-    def isStopped(self):
-        with QMutexLocker(self.mutex):
-            return self.stopped
-    
-    def getBoard(self):
-        """
-        Helper function to get the one and only board connected to the computer
-        running this. It assumes a normal arduino layout, but this can be
-        overriden by passing a different layout dict as the ``layout`` parameter.
-        ``base_dir`` and ``identifier`` are overridable as well. It will raise an
-        IOError if it can't find a board, on a serial, or if it finds more than
-        one.
-        """
-        ports = []
-        for i in xrange(256):
+def get_the_board(layout=BOARDS['arduino'], base_dir='/dev/', identifier='tty.usbserial',):
+    """
+    Helper function to get the one and only board connected to the computer
+    running this. It assumes a normal arduino layout, but this can be
+    overriden by passing a different layout dict as the ``layout`` parameter.
+    ``base_dir`` and ``identifier`` are overridable as well. It will raise an
+    IOError if it can't find a board, on a serial, or if it finds more than
+    one.
+    """
+    boards = []
+    for device in os.listdir(base_dir):
+        if device.startswith(identifier):
             try:
-                s = serial.Serial(i)
-                ports.append(s.portstr)
-                s.close()
+                board = pyfirmata.Board(os.path.join(base_dir, device), layout)
             except serial.SerialException:
                 pass
-        logger.debug("Found %d serial port(s): %s", len(ports), ports)
-        if self.isStopped():
-            return
-        for port in ports:
-            try:
-                board = pyfirmata.Board(port, self.layout)
-            except ValueError, e:
-                logger.warning(str(e))
-            except TypeError, e:
-                logger.debug(str(e))
             else:
-                with QWriteLocker(self.lock):
-                    self.boards.append(board)
-            if self.isStopped():
-                return
-        logger.debug("Found %d Arduino board(s): %s", len(self.boards), [x.sp.port for x in self.boards if x.sp.port in ports])
-        self.completed = True
+                boards.append(board)
+    if len(boards) == 0:
+        raise IOError, "No boards found in %s with identifier %s" % (base_dir, identifier)
+    elif len(boards) > 1:
+        raise IOError, "More than one board found!"
+    return boards[0]
 
 class Iterator(threading.Thread):
     def __init__(self, board):
         super(Iterator, self).__init__()
         self.board = board
-
+        
     def run(self):
         while 1:
             try:
