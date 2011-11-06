@@ -6,7 +6,7 @@ This module contains the class MainWindow.
 
 import logging, inspect, time
 from PyQt4.QtGui import QMainWindow, QPushButton
-from PyQt4.QtCore import pyqtSignature, SIGNAL, SLOT, QTimer
+from PyQt4.QtCore import pyqtSignature, QTimer
 from pyfirmata import Arduino, util
 
 from Ui_mainwindow import Ui_mainWindow
@@ -29,7 +29,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 
         # Build object name, evaluate the string to obtain it and bind the clicked() signal
         for x in xrange(2, 20):
-            self.connect(eval("self.pin"+str(x)), SIGNAL("clicked()"), self.pinClicked)
+            eval("self.pin"+str(x)).clicked.connect(self.pinClicked)
         QTimer.singleShot(0, self.selectPort)
         
         self.board = None

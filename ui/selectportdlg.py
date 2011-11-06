@@ -2,7 +2,7 @@
 
 import logging, serial
 from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget, QMessageBox
-from PyQt4.QtCore import SIGNAL, SLOT, QTimer, QString, pyqtSlot
+from PyQt4.QtCore import QTimer, QString, pyqtSlot
 
 from pyfirmata import Board
 from pyfirmata.boards import BOARDS
