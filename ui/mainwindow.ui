@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>799</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Platex</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton[text='N']{
+	background-color: beige;
+	border-radius: 3px;
+	border-style: inset;
+	border-width: 1px;
+	border-top-color: #FFFFFF;
+	border-left-color: #FFFFFF;
+	border-bottom-color: #515149;
+	border-right-color: #515149;
+}
+
+QPushButton[text='N']:pressed {
+	border-bottom-color: #FFFFFF;
+	border-right-color: #FFFFFF;
+	border-top-color: #515149;
+	border-left-color: #515149;
+ }
+
+QPushButton[text='I']{
+	background-color: green;
+	border-radius: 3px;
+	border-style: inset;
+	border-width: 1px;
+	border-top-color: #009300;
+	border-left-color: #009300;
+	border-bottom-color: #002A00;
+	border-right-color: #002A00;
+}
+
+QPushButton[text='I']:pressed {
+	border-bottom-color: #009300;
+	border-right-color: #009300;
+	border-top-color: #002A00;
+	border-left-color: #002A00;
+ }
+
+QPushButton[text='O']{
+	background-color:red;
+	border-radius: 3px;
+	border-style: inset;
+	border-width: 1px;
+	border-top-color: #FF2626;
+	border-left-color: #FF2626;
+	border-bottom-color: #550000;
+	border-right-color: #550000;
+}
+
+QPushButton[text='O']:pressed {
+	border-bottom-color: #FF2626;
+	border-right-color: #FF2626;
+	border-top-color: #550000;
+	border-left-color: #550000;
+ }
+
+QPushButton[text='A']{
+	background-color: pink;
+	border-radius: 3px;
+	border-style: inset;
+	border-width: 1px;
+	border-top-color: #FFE7EB;
+	border-left-color: #FFE7EB;
+	border-bottom-color: #554043;
+	border-right-color: #554043;
+}
+
+QPushButton[text='A']:pressed {
+	border-bottom-color: #FFE7EB;
+	border-right-color: #FFE7EB;
+	border-top-color: #554043;
+	border-left-color: #554043;
+ }</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QPushButton" name="pin12">
+      <property name="geometry">
+       <rect>
+        <x>467</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin5">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin10">
+      <property name="geometry">
+       <rect>
+        <x>507</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin2">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin4">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin11">
+      <property name="geometry">
+       <rect>
+        <x>487</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin15">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>507</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin18">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>507</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin3">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin8">
+      <property name="geometry">
+       <rect>
+        <x>547</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin14">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>507</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin19">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>507</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin17">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>507</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin7">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin9">
+      <property name="geometry">
+       <rect>
+        <x>527</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin13">
+      <property name="geometry">
+       <rect>
+        <x>447</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>177</x>
+        <y>113</y>
+        <width>601</width>
+        <height>421</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../resources.qrc">:/images/controller_arduino_diecimila.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin6">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>120</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>false</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pin16">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>507</y>
+        <width>20</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>N</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="analog" stdset="0">
+       <bool>true</bool>
+      </property>
+      <property name="pwm" stdset="0">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <zorder>label</zorder>
+     <zorder>pin8</zorder>
+     <zorder>pin11</zorder>
+     <zorder>pin16</zorder>
+     <zorder>pin3</zorder>
+     <zorder>pin4</zorder>
+     <zorder>pin7</zorder>
+     <zorder>pin12</zorder>
+     <zorder>pin18</zorder>
+     <zorder>pin17</zorder>
+     <zorder>pin2</zorder>
+     <zorder>pin13</zorder>
+     <zorder>pin10</zorder>
+     <zorder>pin19</zorder>
+     <zorder>pin15</zorder>
+     <zorder>pin5</zorder>
+     <zorder>pin14</zorder>
+     <zorder>pin9</zorder>
+     <zorder>pin6</zorder>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
