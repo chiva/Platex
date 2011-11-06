@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging, serial
-from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget
+from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget, QMessageBox
 from PyQt4.QtCore import SIGNAL, SLOT, QTimer, QString, pyqtSlot
 
 from pyfirmata import Board
@@ -59,8 +59,8 @@ class SelectPortDlg(QDialog):
         self.updatePorts()
     
     @pyqtSlot()
-    def updatePorts(self):
-        if self.portsCmb.currentText() != QString("Actualizar"):
+    def updatePorts(self, force=False):
+        if self.portsCmb.currentText() != QString("Actualizar") and not force:
             return
         logger.debug("Searching existing serial ports")
         self.connectBtn.setEnabled(False)
@@ -87,9 +87,13 @@ class SelectPortDlg(QDialog):
         try:
             board = Board(unicode(self.portsCmb.currentText()), BOARDS['arduino'])
         except ValueError, e:
-            logger.warning(str(e))
+            logger.warning(e)
+            QMessageBox.warning(self, u"!Atención¡", unicode(e))
+            self.updatePorts(True)
         except TypeError, e:
-            logger.debug(str(e))
+            logger.debug(e)
+            QMessageBox.warning(self, u"!Atención¡", unicode(e))
+            self.updatePorts(True)
         else:
             self.board = board
             self.accept()

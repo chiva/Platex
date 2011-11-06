@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import serial
 import inspect
 import time
@@ -85,11 +87,11 @@ class Board(object):
         else: 
             # Board is not responding or who knows what is connected
             self.exit()
-            raise TypeError, port+": not responding, ignore"
+            raise TypeError, u"La placa en "+port+" no responde. Comprueba las conexiones."
         if byte1 == '\xf9':
             if byte2 != '\x02':
                 self.exit()
-                raise ValueError, port+": firmware version not compatible"
+                raise ValueError, u"La versión del firmware de la placa en "+port+" es incomaptible.\nActualiza o selecciona otra placa."
         else:
             self.exit()
             raise TypeError, port+": not a Platex compatible board"
