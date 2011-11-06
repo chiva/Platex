@@ -2,7 +2,7 @@
 
 import logging, serial
 from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget, QMessageBox
-from PyQt4.QtCore import QTimer, QString, pyqtSlot
+from PyQt4.QtCore import QTimer, pyqtSlot
 
 from pyfirmata import Board
 from pyfirmata.boards import BOARDS
@@ -60,7 +60,7 @@ class SelectPortDlg(QDialog):
     
     @pyqtSlot()
     def updatePorts(self, force=False):
-        if self.portsCmb.currentText() != QString("Actualizar") and not force:
+        if self.portsCmb.currentText() != "Actualizar" and not force:
             return
         logger.debug("Searching existing serial ports")
         self.connectBtn.setEnabled(False)
@@ -78,7 +78,7 @@ class SelectPortDlg(QDialog):
         self.portsCmb.clear()
         self.portsCmb.addItems(ports)
         self.portsCmb.addItem("Actualizar")
-        if self.portsCmb.currentText() != QString(""):
+        if self.portsCmb.currentText() != "":
             self.connectBtn.setEnabled(True)
             self.programBtn.setEnabled(True)
     

@@ -1,3 +1,6 @@
+import sip
+sip.setapi('QString', 2)
+
 from PyQt4 import QtCore, QtGui
 import sys, logging
 
