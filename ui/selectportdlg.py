@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import logging, serial, os
+if os.name == "posix":
+    import glob
 from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget, QMessageBox
 from PyQt4.QtCore import QTimer, pyqtSlot, QProcess
 
@@ -14,15 +16,13 @@ class SelectPortDlg(QDialog):
     def __init__(self, parent=None):
         logging.debug("Port selection dialog created")
         super(SelectPortDlg, self).__init__(parent)
-        self.statusLb = QLabel("Programando el Arduino...")
+        statusLbl = QLabel("Programando el Arduino...")
         self.connectBtn = QPushButton("&Conectar")
-        self.connectBtn.setEnabled(False)
         self.programBtn = QPushButton("&Programar")
-        self.programBtn.setEnabled(False)
         exitBtn = QPushButton("Salir")
-        multiLbl = QLabel("Selecciona la placa:")
+        multiLbl = QLabel("&Selecciona la placa:")
         self.portsCmb = QComboBox()
-        self.updatePorts(True)
+        multiLbl.setBuddy(self.portsCmb)
         
         self.stackedWidget = QStackedWidget()
         mainWidget = QWidget()
@@ -33,7 +33,7 @@ class SelectPortDlg(QDialog):
         self.stackedWidget.addWidget(mainWidget)
         progWidget = QWidget()
         progLayout = QHBoxLayout()
-        progLayout.addWidget(self.statusLb)
+        progLayout.addWidget(statusLbl)
         progLayout.addStretch()
         progWidget.setLayout(progLayout)
         self.stackedWidget.addWidget(progWidget)
@@ -43,13 +43,13 @@ class SelectPortDlg(QDialog):
         buttonLayout.addWidget(self.programBtn)
         buttonLayout.addStretch()
         buttonLayout.addWidget(exitBtn)
-        exitBtn.setFocus()
         
         layout = QVBoxLayout()
         layout.addWidget(self.stackedWidget)
         layout.addLayout(buttonLayout)
         self.setLayout(layout)
         
+        self.linux = True if os.name == "posix" else False
         self.boards = list()
         self.board = None
         self.programBtn.clicked.connect(self.programBoard)
@@ -57,16 +57,19 @@ class SelectPortDlg(QDialog):
         self.connectBtn.clicked.connect(self.connectBoard)
         exitBtn.clicked.connect(self.reject)
         self.setWindowTitle(u"Iniciando comunicación")
-        self.updatePorts()
+        self.updatePorts(True)
 
     @pyqtSlot()
     def updatePorts(self, force=False):
+        # FIXME: Program button gets focus when opening QComboBox
         if self.portsCmb.currentText() != "Actualizar" and not force:
             return
         logger.debug("Searching available serial ports")
         self.connectBtn.setEnabled(False)
         self.programBtn.setEnabled(False)
-        ports = []
+        ports = list()
+        if self.linux:
+            ports += glob.glob("/dev/ttyACM*") + glob.glob("/dev/ttyUSB*")
         for i in xrange(256):
             try:
                 s = serial.Serial(i)
@@ -75,7 +78,8 @@ class SelectPortDlg(QDialog):
             except serial.SerialException:
                 pass
         logger.debug("Found %d serial port(s): %s", len(ports), ports)
-        if not len(ports): ports = [""]
+        if not len(ports):
+            ports = [""]
         self.portsCmb.clear()
         self.portsCmb.addItems(ports)
         self.portsCmb.addItem("Actualizar")
@@ -87,7 +91,7 @@ class SelectPortDlg(QDialog):
     @pyqtSlot()
     def connectBoard(self):
         try:
-            logging.debug("Connecting to Arduino board on port "+board.sp.portstr)
+            logging.debug("Connecting to Arduino board on port "+self.portsCmb.currentText())
             board = Board(self.portsCmb.currentText(), BOARDS['arduino'])
         except ValueError, e:
             logger.warning(e)
@@ -108,10 +112,17 @@ class SelectPortDlg(QDialog):
         self.programBtn.setEnabled(False)
         self.stackedWidget.setCurrentIndex(1)
         logging.debug("Programming Arduino board on "+self.portsCmb.currentText())
+        if self.linux:
+            # We suppose avrdude 5.10 or newer is already installed
+            config = "/etc/avrdude.conf"
+            executable = "/usr/bin/avrdude"
+        else:
+            executable = "avrdude"
+            config = "avrdude.conf"
         os.chdir("./avrdude") # TODO: do this correctly
         self.program = QProcess()
         # avrdude reference: http://www.ladyada.net/learn/avr/avrdude.html
-        self.program.start("avrdude -q -V -C avrdude.conf -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:StandardFirmata.hex:i")
+        self.program.start(executable+" -q -V -C "+config+" -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:StandardFirmata.hex:i")
         self.program.finished.connect(self.programFinished)
 
     @pyqtSlot()
@@ -124,6 +135,8 @@ class SelectPortDlg(QDialog):
                 error = u"No parece que haya ninguna placa conectada al puerto."
             elif output.find("ser_send()") != -1: # ser_send(): write error: sorry no info avail
                 error = u"Se produjo un error durante la comunicación con la placa.\nAsegúrate de que está correctamente conectada."
+            elif output.find("ser_open()") != -1: # ser_send(): write error: sorry no info avail
+                error = u"El puerto no existe. Asegúrate de que está correctamente conectada."
             else:
                 error = u"Se produjo un error al programar la placa.\nComprueba el conexionado."
             QMessageBox.warning(self, u"¡Atención!", error)
