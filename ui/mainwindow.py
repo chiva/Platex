@@ -6,7 +6,7 @@ This module contains the class MainWindow.
 
 import logging, inspect, time
 from PyQt4.QtGui import QMainWindow, QPushButton
-from PyQt4.QtCore import pyqtSignature, QTimer
+from PyQt4.QtCore import pyqtSignature, QTimer, pyqtSlot
 from pyfirmata import Arduino, util
 
 from Ui_mainwindow import Ui_mainWindow
@@ -29,38 +29,76 @@ class MainWindow(QMainWindow, Ui_mainWindow):
 
         # Build object name, evaluate the string to obtain it and bind the clicked() signal
         for x in xrange(2, 20):
-            eval("self.pin"+str(x)).clicked.connect(self.pinClicked)
+            eval("self.pin%02d" % (x)).clicked.connect(self.pinClicked)
         QTimer.singleShot(0, self.selectPort)
         
         self.board = None
 
     def selectPort(self):
-        # Devolver objeto pyfirmata, mirar ejemplo libro paint
         dialog = SelectPortDlg(self)
         dialog.exec_()
-        # If empty list of boards is returned, we exit
+        # If empty object is returned, we exit
         self.board = dialog.getBoard()
-        print self.board
         if not self.board:
             self.close()
 
+    @pyqtSlot()
     def pinClicked(self):
         pin = self.sender()
         if not isinstance(pin, QPushButton):
             logger.warning(inspect.stack()[0][3] + "(): Not a QPushButton")
             return
         if not pin.property("analog").isValid():
-            logger.warning("%s(): '%s' shouldn't be connected to this method. Missing 'analog' property", inspect.stack()[0][3], unicode(pin.property("objectName").toString()))
-            return 
-        current = unicode(pin.text())
+            logger.warning("%s(): '%s' shouldn't be connected to this method. Missing 'analog' property", inspect.stack()[0][3], pin.property("objectName").toString())
+            return
+        current = pin.text()
         if current == 'N':
             pin.setText('I')
+            mode = 0
         elif current == 'I':
             pin.setText('O')
-            self.board.digital[13].write(1)
+            mode = 1
         elif current == 'O' and pin.property("analog").toBool():
             pin.setText('A')
+            mode = 2
         else:
             pin.setText('N')
+            mode = 0
+        number = int(pin.property("objectName").toString()[-2:])
+        if number <= 13:
+            self.board.digital[number].mode = mode
+        else:
+            self.board.analog[number-14].mode = mode
         pin.setStyleSheet("/* */") #Empty stylesheet to force redraw with the stylesheet set in Qt-Designer
-        logger.debug("%s(): '%s' change its mode to '%s'", inspect.stack()[0][3], unicode(pin.property("objectName").toString()), unicode(pin.text()))
+        logger.debug("%s(): '%s' change its mode to '%s'", inspect.stack()[0][3], pin.property("objectName").toString(), pin.text())
+
+    @pyqtSlot()
+    def digPinClicked(self):
+        pin = self.sender()
+        if pin.isChecked():
+            self.board.digital[int(pin.property("objectName").toString()[-2:])].write(1)
+        else:
+            self.board.digital[int(pin.property("objectName").toString()[-2:])].write(0)
+            
+    
+    @pyqtSignature("int")
+    def on_tabWidget_currentChanged(self, index):
+        """
+        Slot documentation goes here.
+        """
+        if index == 1:
+            for x in xrange(2, 20):
+                digPin = eval("self.d%02d" % (x))
+                digInPin = eval("self.di%02d" % (x))
+                pin = eval("self.pin%02d" % (x))
+                digPin.setVisible(False)
+                digInPin.setVisible(False)
+                if x <= 13:
+                    mode = self.board.digital[x].mode
+                else:
+                    mode = self.board.analog[x-14].mode
+                if mode == 1:
+                    digPin.clicked.connect(self.digPinClicked)
+                    digPin.setVisible(True)
+                elif mode == 0 and pin.text() == 'I':
+                    digInPin.setVisible(True)
