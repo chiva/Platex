@@ -6,7 +6,7 @@ This module contains the class MainWindow.
 
 import logging, inspect, time
 from PyQt4.QtGui import QMainWindow, QPushButton
-from PyQt4.QtCore import pyqtSignature, QTimer, pyqtSlot
+from PyQt4.QtCore import QTimer, pyqtSlot
 from pyfirmata import Arduino, util
 
 from Ui_mainwindow import Ui_mainWindow
@@ -41,6 +41,9 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         self.board = dialog.getBoard()
         if not self.board:
             self.close()
+        else:
+            self.it = util.Iterator(self.board)
+            self.it.start()
 
     @pyqtSlot()
     def pinClicked(self):
@@ -75,18 +78,27 @@ class MainWindow(QMainWindow, Ui_mainWindow):
     @pyqtSlot()
     def digPinClicked(self):
         pin = self.sender()
+        number = int(pin.property("objectName").toString()[-2:])
         if pin.isChecked():
-            self.board.digital[int(pin.property("objectName").toString()[-2:])].write(1)
+            self.board.digital[number].write(1)
+            logger.debug("Output pin "+str(number)+" changed its state to True")
         else:
-            self.board.digital[int(pin.property("objectName").toString()[-2:])].write(0)
-            
+            self.board.digital[number].write(0)
+            logger.debug("Output pin "+str(number)+" changed its state to False")
+
+    @pyqtSlot(int, bool)
+    def updatePin(self, number, state):
+        logger.debug("Input pin "+str(number)+" changed its state to "+str(state))
+        eval("self.di%02d" % (number)).setChecked(state)
     
-    @pyqtSignature("int")
+    @pyqtSlot(int)
     def on_tabWidget_currentChanged(self, index):
         """
         Slot documentation goes here.
         """
         if index == 1:
+            for x in self.board.digital_ports:
+                x.pinChanged.connect(self.updatePin)
             for x in xrange(2, 20):
                 digPin = eval("self.d%02d" % (x))
                 digInPin = eval("self.di%02d" % (x))

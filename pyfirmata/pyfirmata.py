@@ -4,6 +4,7 @@ import serial
 import inspect
 import time
 from util import two_byte_iter_to_str
+from PyQt4.QtCore import QObject, pyqtSignal
 
 # Message command bytes - straight from Firmata.h
 DIGITAL_MESSAGE = 0x90      # send data for a digital pin
@@ -56,7 +57,7 @@ class InvalidPinDefError(Exception):
 class NoInputWarning(RuntimeWarning):
     pass
     
-class Board(object):
+class Board(QObject):
     """
     Base class for any board
     """
@@ -69,6 +70,7 @@ class Board(object):
     _parsing_sysex = False
     
     def __init__(self, port, layout, baudrate=57600, name=None):
+        super(Board, self).__init__()
         self.sp = serial.Serial(port, baudrate, timeout=0.1)
         # Allow 5 secs for Arduino's auto-reset to happen
         # Alas, Firmata blinks it's version before printing it to serial
@@ -316,9 +318,13 @@ class Board(object):
         self.firmware_version = (major, minor)
         self.firmware = two_byte_iter_to_str(data[2:])
 
-class Port(object):
+class Port(QObject):
     """ An 8-bit port on the board """
+    
+    pinChanged = pyqtSignal(int, bool)
+    
     def __init__(self, board, port_number):
+        super(Port, self).__init__()
         self.board = board
         self.port_number = port_number
         self.reporting = False
@@ -360,7 +366,7 @@ class Port(object):
         msg += chr(mask % 128)
         msg += chr(mask >> 7)
         self.board.sp.write(msg)
-        
+
     def _update(self, mask):
         """
         Update the values for the pins marked as input with the mask.
@@ -370,10 +376,12 @@ class Port(object):
                 if pin.mode is INPUT:
                     pin_nr = pin.pin_number - self.port_number * 8
                     pin.value = (mask & (1 << pin_nr)) > 1
+                    self.pinChanged.emit(pin.pin_number, pin.value)
 
-class Pin(object):
-    """ A Pin representation """
+class Pin(QObject):
+    """ A Pin representation """    
     def __init__(self, board, pin_number, type=ANALOG, port=None):
+        super(Pin, self).__init__()
         self.board = board
         self.pin_number = pin_number
         self.type = type
