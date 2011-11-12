@@ -1,13 +1,22 @@
 # -*- coding: utf-8 -*-
 
 import logging, serial, os
-if os.name == "posix":
-    import glob
 from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget, QMessageBox
 from PyQt4.QtCore import QTimer, pyqtSlot, QProcess
 
 from pyfirmata import Board
 from pyfirmata.boards import BOARDS
+
+MAC = LINUX = False
+if os.name == "posix":
+    import glob
+    import platform
+    if platform.platform().find('Darwin') != -1:
+        MAC = True
+        LINUX = False
+    else:
+        MAC = False
+        LINUX = True
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +58,6 @@ class SelectPortDlg(QDialog):
         layout.addLayout(buttonLayout)
         self.setLayout(layout)
         
-        self.linux = True if os.name == "posix" else False
         self.boards = list()
         self.board = None
         self.programBtn.clicked.connect(self.programBoard)
@@ -68,8 +76,10 @@ class SelectPortDlg(QDialog):
         self.connectBtn.setEnabled(False)
         self.programBtn.setEnabled(False)
         ports = list()
-        if self.linux:
+        if LINUX:
             ports += glob.glob("/dev/ttyACM*") + glob.glob("/dev/ttyUSB*")
+        elif MAC:
+            ports += glob.glob("/dev/tty.usb*") + glob.glob("/dev/tty.serial*")
         for i in xrange(256):
             try:
                 s = serial.Serial(i)
@@ -112,10 +122,13 @@ class SelectPortDlg(QDialog):
         self.programBtn.setEnabled(False)
         self.stackedWidget.setCurrentIndex(1)
         logging.debug("Programming Arduino board on "+self.portsCmb.currentText())
-        if self.linux:
+        if LINUX:
             # We suppose avrdude 5.10 or newer is already installed
             config = "/etc/avrdude.conf"
             executable = "/usr/bin/avrdude"
+        elif MAC:
+            config = "./avrdude.conf"
+            executable = "./avrdude"
         else:
             executable = "avrdude"
             config = "avrdude.conf"

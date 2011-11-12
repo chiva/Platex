@@ -1272,31 +1272,6 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
  </widget>
  <resources>
   <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>
