@@ -73,7 +73,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         else:
             self.board.analog[number-14].mode = mode
         pin.setStyleSheet("/* */") #Empty stylesheet to force redraw with the stylesheet set in Qt-Designer
-        logger.debug("%s(): '%s' change its mode to '%s'", inspect.stack()[0][3], pin.property("objectName").toString(), pin.text())
+        logger.debug("Changed pin %d mode to '%s'", number, pin.text())
 
     @pyqtSlot()
     def digPinClicked(self):

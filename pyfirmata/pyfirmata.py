@@ -43,6 +43,7 @@ INPUT = 0          # as defined in wiring.h
 OUTPUT = 1         # as defined in wiring.h
 ANALOG = 2         # analog pin in analogInput mode
 PWM = 3            # digital pin in PWM output mode
+NONE = 4           # pin in input mode with pull-up
 
 # Pin types
 DIGITAL = OUTPUT   # same as OUTPUT below
@@ -386,7 +387,7 @@ class Pin(QObject):
         self.type = type
         self.port = port
         self.PWM_CAPABLE = False
-        self._mode = (type == DIGITAL and OUTPUT or INPUT)
+        self._mode = NONE
         self.reporting = False
         self.value = None
         
@@ -410,7 +411,9 @@ class Pin(QObject):
         self._mode = mode
         command = chr(SET_PIN_MODE)
         command += chr(self.pin_number)
-        command += chr(mode)
+        if mode != NONE: command += chr(mode)
+        # Set a pin to NONE mode (INPUT without reporting)
+        else: command += chr(INPUT)
         self.board.sp.write(command)
         if mode == INPUT:
             self.enable_reporting()
