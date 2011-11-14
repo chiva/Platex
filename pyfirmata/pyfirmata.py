@@ -43,7 +43,7 @@ INPUT = 0          # as defined in wiring.h
 OUTPUT = 1         # as defined in wiring.h
 ANALOG = 2         # analog pin in analogInput mode
 PWM = 3            # digital pin in PWM output mode
-NONE = 4           # pin in input mode with pull-up
+NONE = 7           # pin in input mode
 
 # Pin types
 DIGITAL = OUTPUT   # same as OUTPUT below

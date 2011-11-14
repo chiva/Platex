@@ -33,6 +33,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         QTimer.singleShot(0, self.selectPort)
         
         self.board = None
+        self.lastIndex = 0
 
     def selectPort(self):
         dialog = SelectPortDlg(self)
@@ -81,10 +82,10 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         number = int(pin.property("objectName").toString()[-2:])
         if pin.isChecked():
             self.board.digital[number].write(1)
-            logger.debug("Output pin "+str(number)+" changed its state to True")
+            logger.debug("Changed output pin "+str(number)+" state to True")
         else:
             self.board.digital[number].write(0)
-            logger.debug("Output pin "+str(number)+" changed its state to False")
+            logger.debug("Changed output pin "+str(number)+" state to False")
 
     @pyqtSlot(int, bool)
     def updatePin(self, number, state):
@@ -96,6 +97,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         """
         Slot documentation goes here.
         """
+        self.lastIndex = index
         if index == 1:
             for x in self.board.digital_ports:
                 x.pinChanged.connect(self.updatePin)

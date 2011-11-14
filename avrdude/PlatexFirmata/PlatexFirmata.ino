@@ -31,7 +31,7 @@
 
 #include <Servo.h>
 #include <Wire.h>
-#include "Firmata.h"
+#include "PFirmata.h"
 
 // move the following defines to Firmata.h?
 #define I2C_WRITE B00000000
@@ -237,6 +237,11 @@ void setPinModeCallback(byte pin, int mode)
       // the user must call I2C_CONFIG to enable I2C for a device
       pinConfig[pin] = I2C;
     }
+    break;
+  case NONE:
+    pinMode(PIN_TO_DIGITAL(pin), INPUT); // disable output driver
+    digitalWrite(PIN_TO_DIGITAL(pin), LOW); // disable internal pull-ups
+    pinConfig[pin] = NONE;
     break;
   default:
     Firmata.sendString("Unknown pin mode"); // TODO: put error msgs in EEPROM
@@ -558,10 +563,10 @@ void systemResetCallback()
   for (byte i=0; i < TOTAL_PINS; i++) {
     if (IS_PIN_ANALOG(i)) {
       // turns off pullup, configures everything
-      setPinModeCallback(i, ANALOG);
+      setPinModeCallback(i, NONE);
     } else {
       // sets the output to 0, configures portConfigInputs
-      setPinModeCallback(i, INPUT);
+      setPinModeCallback(i, NONE);
     }
   }
   // by default, do not report any analog inputs

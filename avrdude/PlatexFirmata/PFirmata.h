@@ -72,7 +72,8 @@
 #define SERVO                   0x04 // digital pin in Servo output mode
 #define SHIFT                   0x05 // shiftIn/shiftOut mode
 #define I2C                     0x06 // pin included in I2C setup
-#define TOTAL_PIN_MODES         7
+#define NONE			0x07 // pin in input mode, but ignored
+#define TOTAL_PIN_MODES         8
 
 extern "C" {
 // callback function types
