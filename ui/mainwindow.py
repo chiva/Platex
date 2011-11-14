@@ -67,7 +67,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
             mode = 2
         else:
             pin.setText('N')
-            mode = 0
+            mode = 7
         number = int(pin.property("objectName").toString()[-2:])
         if number <= 13:
             self.board.digital[number].mode = mode

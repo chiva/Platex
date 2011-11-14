@@ -411,9 +411,7 @@ class Pin(QObject):
         self._mode = mode
         command = chr(SET_PIN_MODE)
         command += chr(self.pin_number)
-        if mode != NONE: command += chr(mode)
-        # Set a pin to NONE mode (INPUT without reporting)
-        else: command += chr(INPUT)
+        command += chr(mode)
         self.board.sp.write(command)
         if mode == INPUT:
             self.enable_reporting()
