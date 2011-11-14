@@ -118,6 +118,10 @@ class SelectPortDlg(QDialog):
 
     @pyqtSlot()
     def programBoard(self):
+        if not os.path.exists('./avrdude/PlatexFirmata/PlatexFirmata.hex'):
+            logging.warning("Hexadecimal file not found")
+            QMessageBox.warning(self, u"¡Atención!", u"No se pudo encontrar el fichero a programar")
+            return
         self.connectBtn.setEnabled(False)
         self.programBtn.setEnabled(False)
         self.stackedWidget.setCurrentIndex(1)
@@ -135,7 +139,7 @@ class SelectPortDlg(QDialog):
         os.chdir("./avrdude") # TODO: do this correctly
         self.program = QProcess()
         # avrdude reference: http://www.ladyada.net/learn/avr/avrdude.html
-        self.program.start(executable+" -q -V -C "+config+" -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:StandardFirmata.hex:i")
+        self.program.start(executable+" -q -V -C "+config+" -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:./PlatexFirmata/PlatexFirmata.hex:i")
         self.program.finished.connect(self.programFinished)
 
     @pyqtSlot()
@@ -152,8 +156,9 @@ class SelectPortDlg(QDialog):
                 error = u"El puerto no existe. Asegúrate de que está correctamente conectada."
             else:
                 error = u"Se produjo un error al programar la placa.\nComprueba el conexionado."
-            QMessageBox.warning(self, u"¡Atención!", error)
+                logging.warning("avrdude output: "+output)
             logging.warning("An error ocurred: "+error)
+            QMessageBox.warning(self, u"¡Atención!", error)
         else:
             logging.debug("Programmed successfully")
         os.chdir("..")
