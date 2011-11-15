@@ -30,10 +30,10 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         # Build object name, evaluate the string to obtain it and bind the clicked() signal
         for x in xrange(2, 20):
             eval("self.pin%02d" % (x)).clicked.connect(self.pinClicked)
-        QTimer.singleShot(0, self.selectPort)
         
         self.board = None
         self.lastIndex = 0
+        QTimer.singleShot(0, self.selectPort)
 
     def selectPort(self):
         dialog = SelectPortDlg(self)
@@ -69,10 +69,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
             pin.setText('N')
             mode = 7
         number = int(pin.property("objectName").toString()[-2:])
-        if number <= 13:
-            self.board.digital[number].mode = mode
-        else:
-            self.board.analog[number-14].mode = mode
+        self.board.pins[number].mode = mode
         pin.setStyleSheet("/* */") #Empty stylesheet to force redraw with the stylesheet set in Qt-Designer
         logger.debug("Changed pin %d mode to '%s'", number, pin.text())
 
@@ -81,10 +78,10 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         pin = self.sender()
         number = int(pin.property("objectName").toString()[-2:])
         if pin.isChecked():
-            self.board.digital[number].write(1)
+            self.board.pins[number].write(1)
             logger.debug("Changed output pin "+str(number)+" state to True")
         else:
-            self.board.digital[number].write(0)
+            self.board.pins[number].write(0)
             logger.debug("Changed output pin "+str(number)+" state to False")
 
     @pyqtSlot(int, bool)
@@ -99,7 +96,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         """
         self.lastIndex = index
         if index == 1:
-            for x in self.board.digital_ports:
+            for x in self.board.ports:
                 x.pinChanged.connect(self.updatePin)
             for x in xrange(2, 20):
                 digPin = eval("self.d%02d" % (x))
@@ -107,10 +104,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                 pin = eval("self.pin%02d" % (x))
                 digPin.setVisible(False)
                 digInPin.setVisible(False)
-                if x <= 13:
-                    mode = self.board.digital[x].mode
-                else:
-                    mode = self.board.analog[x-14].mode
+                mode = self.board.pins[x].mode
                 if mode == 1:
                     digPin.clicked.connect(self.digPinClicked)
                     digPin.setVisible(True)
