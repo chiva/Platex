@@ -130,8 +130,6 @@ class Board(QObject):
         for i in board_layout['analog']:
             self.analog.append(Pin(self, i))
         # Only create digital ports if the Firmata can use them (ie. not on the Mega...)
-        # TODO Why is (TOTAL_FIRMATA_PINS + 7) / 8 used in Firmata?
-        print "puertos: "+str((len(board_layout['digital'])+7)/8)
         if board_layout['use_ports']:
             self.pins = []
             self.ports = []
