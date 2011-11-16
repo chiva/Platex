@@ -388,7 +388,7 @@ class Pin(QObject):
         self.PWM_CAPABLE = False
         self._mode = NONE
         self.reporting = False
-        self.value = None
+        self.value = False
         
     def __str__(self):
         type = {ANALOG : 'Analog', DIGITAL : 'Digital'}[self.type]

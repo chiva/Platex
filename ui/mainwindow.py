@@ -94,19 +94,36 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         """
         Slot documentation goes here.
         """
+        if self.lastIndex == 0:
+            for x in xrange(2, 20):
+                eval("self.pin%02d" % (x)).clicked.disconnect()
+        elif self.lastIndex == 1:
+            for x in self.board.ports:
+                x.pinChanged.disconnect()
+            for x in xrange(2, 20):
+                try:
+                    eval("self.d%02d" % (x)).clicked.disconnect()
+                except TypeError:
+                    pass
+        
         self.lastIndex = index
-        if index == 1:
+        
+        if index == 0:
+            for x in xrange(2, 20):
+                eval("self.pin%02d" % (x)).clicked.connect(self.pinClicked)
+        elif index == 1:
             for x in self.board.ports:
                 x.pinChanged.connect(self.updatePin)
             for x in xrange(2, 20):
                 digPin = eval("self.d%02d" % (x))
                 digInPin = eval("self.di%02d" % (x))
-                pin = eval("self.pin%02d" % (x))
                 digPin.setVisible(False)
                 digInPin.setVisible(False)
                 mode = self.board.pins[x].mode
                 if mode == 1:
                     digPin.clicked.connect(self.digPinClicked)
                     digPin.setVisible(True)
-                elif mode == 0 and pin.text() == 'I':
+                    digPin.setChecked(self.board.pins[x].read())
+                elif mode == 0:
                     digInPin.setVisible(True)
+                    digInPin.setChecked(self.board.pins[x].read())
