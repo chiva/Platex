@@ -31,16 +31,19 @@ else:
     app = QCoreApplication([])
     PATH = unicode(app.applicationDirPath())
     del app
-if sys.platform.startswith("darwin"):
+if sys.platform.lower().startswith("darwin"):
     i = PATH.find("Resources")
     if i > -1:
         PATH = PATH[:i] + "bin"
+	if not os.path.exists(PATH+"/pyuic4"):
+            PATH = "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin"
+
 PYUIC4 = os.path.join(PATH, "pyuic4") # e.g. PYUIC4 = "/usr/bin/pyuic4"
-if sys.platform.lower().startswith("darwin"):
+if sys.platform.lower().startswith("darwin") and not PATH.startswith("/opt"):
     PYUIC4 = os.path.dirname(sys.executable)
     i = PYUIC4.find("Resources")
     if i > -1:
-        PYUIC4 = PYUIC4[:i] + "Lib/python2.6/site-packages/PyQt4/uic/pyuic.py"
+        PYUIC4 = PYUIC4[:i] + "Lib/python2.7/site-packages/PyQt4/uic/pyuic.py"
 PYRCC4 = os.path.join(PATH, "pyrcc4")
 PYLUPDATE4 = os.path.join(PATH, "pylupdate4")
 LRELEASE = "lrelease"
@@ -131,7 +134,7 @@ def build(path):
                os.stat(source)[stat.ST_MTIME] >
                os.stat(target)[stat.ST_MTIME]):
                 args = ["-o", target, source]
-                if sys.platform.startswith("darwin") and command == PYUIC4:
+                if sys.platform.startswith("darwin") and command == PYUIC4 and not PYUIC4.startswith("/opt"):
                     command = sys.executable
                     args = [PYUIC4] + args
                 if Debug:
