@@ -35,7 +35,7 @@ if sys.platform.lower().startswith("darwin"):
     i = PATH.find("Resources")
     if i > -1:
         PATH = PATH[:i] + "bin"
-	if not os.path.exists(PATH+"/pyuic4"):
+    if not os.path.exists(PATH+"/pyuic4"):
             PATH = "/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin"
 
 PYUIC4 = os.path.join(PATH, "pyuic4") # e.g. PYUIC4 = "/usr/bin/pyuic4"

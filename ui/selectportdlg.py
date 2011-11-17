@@ -136,7 +136,7 @@ class SelectPortDlg(QDialog):
         else:
             executable = "avrdude"
             config = "avrdude.conf"
-        os.chdir("./avrdude") # TODO: do this correctly
+        os.chdir("./avrdude")
         self.program = QProcess()
         # avrdude reference: http://www.ladyada.net/learn/avr/avrdude.html
         self.program.start(executable+" -q -V -C "+config+" -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:./PlatexFirmata/PlatexFirmata.hex:i")
