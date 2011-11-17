@@ -23,8 +23,8 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         """
         Default Constructor. It can receive a top window as parent. 
         """
-        logging.debug("Creating MainWindow")
-        super(MainWindow, self).__init__(parent)
+        QMainWindow.__init__(self, parent)
+        logging.debug("Created MainWindow")
         self.setupUi(self)
 
         # Build object name, evaluate the string to obtain it and bind the clicked() signal

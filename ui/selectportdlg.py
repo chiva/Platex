@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class SelectPortDlg(QDialog):
 
     def __init__(self, parent=None):
+        QDialog.__init__(self, parent)
         logging.debug("Port selection dialog created")
-        super(SelectPortDlg, self).__init__(parent)
         statusLbl = QLabel("Programando el Arduino...")
         self.connectBtn = QPushButton("&Conectar")
         self.programBtn = QPushButton("&Programar")
