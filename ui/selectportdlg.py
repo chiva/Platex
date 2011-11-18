@@ -127,16 +127,16 @@ class SelectPortDlg(QDialog):
 
     @pyqtSlot()
     def programFinished(self):
-        output = unicode(self.program.readAllStandardError())
+        output = self.program.readAllStandardError()
         if output.find("flash written") == -1: # avrdude: xxxx bytes of flash written
             if output.find("Expected signature") != -1: # avrdude: Expected signature for ATMEGA328P is 1E 95 0F
                 error = u"La placa conectada no tiene un chip compatible."
-            elif output.find("resp=0x00") != -1: # avrdude: stk500_getsync(): not in sync: resp=0x00
+            elif output.find("not in sync: resp=0x00") != -1: # avrdude: stk500_getsync(): not in sync: resp=0x00
                 error = u"No parece que haya ninguna placa conectada al puerto."
             elif output.find("ser_send()") != -1: # ser_send(): write error: sorry no info avail
                 error = u"Se produjo un error durante la comunicación con la placa.\nAsegúrate de que está correctamente conectada."
             elif output.find("ser_open()") != -1: # ser_send(): write error: sorry no info avail
-                error = u"El puerto no existe. Asegúrate de que está correctamente conectada."
+                error = u"El puerto no se pudo abrir.\nAsegúrate de que ningún programa lo está usando."
             else:
                 error = u"Se produjo un error al programar la placa.\nComprueba el conexionado."
                 logging.warning("avrdude output: "+output)
