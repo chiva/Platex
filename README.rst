@@ -6,6 +6,8 @@ Platex is an experimentation platform based on Arduino, Firmata and Python that 
 Installation
 ------------
 
+NOTE: compiled version of the Arduino sketch to run Platex is not provided in the repository, please upload the ``avrdude/PlatexFirmata/PlatexFirmata.ino`` with the `Arduino software`_.
+
 **Windows**
 
 #. Install `Python 2.7`_
@@ -30,7 +32,7 @@ Installation
 
 #. Install all dependencies ::
 
-    $ sudo apt-get install git avrdude python-qt4 python-pip
+    $ sudo apt-get install git avrdude python-qt4 pyqt4-dev-tools python-pip
     $ sudo pip install pyserial --upgrade
 
 #. Download source code ::
@@ -78,6 +80,7 @@ Installation
 
 .. [#] For Mac OS X 10.7 Lion
 
+.. _Arduino software: http://code.google.com/p/arduino/wiki/Arduino1
 .. _Python 2.7: http://python.org/ftp/python/2.7.2/python-2.7.2.msi
 .. _PyQt 4.8: http://www.riverbankcomputing.co.uk/static/Downloads/PyQt4/PyQt-Py2.7-x86-gpl-4.8.6-1.exe
 .. _source code: https://github.com/chiva/Platex/downloads
