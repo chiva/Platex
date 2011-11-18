@@ -57,7 +57,7 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 
 #. Install dependencies ::
 
-    $ sudo port install py27-pyqt4 && sudo port select --set python python27
+    $ sudo port install py27-pyqt4 avrdude && sudo port select --set python python27
 
 #. Go for a very long walk
 
