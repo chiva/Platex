@@ -103,6 +103,10 @@ class SelectPortDlg(QDialog):
             logger.debug(e)
             QMessageBox.warning(self, u"!Atención¡", unicode(e))
             self.updatePorts(True)
+        except serial.serialutil.SerialException, e:
+            logger.warning(e)
+            QMessageBox.warning(self, u"!Atención¡", unicode(e))
+            self.updatePorts(True)
         else:
             logging.debug("Using Arduino board on port "+board.sp.portstr)
             self.board = board
