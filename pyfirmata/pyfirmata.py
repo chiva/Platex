@@ -71,7 +71,7 @@ class Board(QObject):
     _parsing_sysex = False
     
     def __init__(self, port, layout, baudrate=57600, name=None):
-        super(Board, self).__init__()
+        QObject.__init__(self)
         self.sp = serial.Serial(port, baudrate, timeout=5)
         # Allow 5 secs for Arduino's auto-reset to happen
         # Alas, Firmata blinks it's version before printing it to serial
@@ -323,7 +323,7 @@ class Port(QObject):
     pinChanged = pyqtSignal(int, bool)
     
     def __init__(self, board, port_number):
-        super(Port, self).__init__()
+        QObject.__init__(self)
         self.board = board
         self.port_number = port_number
         self.reporting = False
@@ -380,7 +380,7 @@ class Port(QObject):
 class Pin(QObject):
     """ A Pin representation """    
     def __init__(self, board, pin_number, type=ANALOG, port=None):
-        super(Pin, self).__init__()
+        QObject.__init__(self)
         self.board = board
         self.pin_number = pin_number
         self.type = type
