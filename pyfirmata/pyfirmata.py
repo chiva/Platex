@@ -140,6 +140,8 @@ class Board(QObject):
                 self.pins += port.pins
             for i in board_layout['pwm']:
                 self.pins[i].PWM_CAPABLE = True
+            for i in board_layout['analog']:
+                self.pins[i].type = ANALOG
         else:
             self.pins = []
             for i in board_layout['digital']:
@@ -422,13 +424,13 @@ class Pin(QObject):
     
     def enable_reporting(self):
         """ Set an input pin to report values """
-        if self.mode is not INPUT:
-            raise IOError, "%s is not an input and can therefore not report" % self
-        if self.type == ANALOG:
+        if self.mode is ANALOG and self.type == ANALOG:
             self.reporting = True
             msg = chr(REPORT_ANALOG + self.pin_number)
             msg += chr(1)
             self.board.sp.write(msg)
+        elif self.mode is not INPUT:
+            raise IOError, "%s is not an input and can therefore not report" % self
         else:
             self.port.enable_reporting() # TODO This is not going to work for non-optimized boards like Mega
         

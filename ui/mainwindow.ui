@@ -14,7 +14,21 @@
    <string>Platex</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton[text='N']{
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton[text='N']{
+    padding-left:12px;
 	background-color: beige;
 	border-radius: 3px;
 	border-style: inset;
@@ -26,13 +40,18 @@
 }
 
 QPushButton[text='N']:pressed {
+    padding-top: 1px;
+	padding-left: 13px;
 	border-bottom-color: #FFFFFF;
 	border-right-color: #FFFFFF;
 	border-top-color: #515149;
 	border-left-color: #515149;
  }
 
+QPushButton[text='N']::menu-indicator{ left:15px }
+
 QPushButton[text='I']{
+    padding-left:12px;
 	background-color: green;
 	border-radius: 3px;
 	border-style: inset;
@@ -44,13 +63,18 @@ QPushButton[text='I']{
 }
 
 QPushButton[text='I']:pressed {
+    padding-top: 1px;
+	padding-left: 13px;
 	border-bottom-color: #009300;
 	border-right-color: #009300;
 	border-top-color: #002A00;
 	border-left-color: #002A00;
  }
 
+QPushButton[text='I']::menu-indicator{ left:15px }
+
 QPushButton[text='O']{
+    padding-left:12px;
 	background-color:red;
 	border-radius: 3px;
 	border-style: inset;
@@ -62,13 +86,18 @@ QPushButton[text='O']{
 }
 
 QPushButton[text='O']:pressed {
+    padding-top: 1px;
+	padding-left: 13px;
 	border-bottom-color: #FF2626;
 	border-right-color: #FF2626;
 	border-top-color: #550000;
 	border-left-color: #550000;
  }
 
+QPushButton[text='O']::menu-indicator{ left:15px }
+
 QPushButton[text='A']{
+    padding-left:12px;
 	background-color: pink;
 	border-radius: 3px;
 	border-style: inset;
@@ -80,21 +109,72 @@ QPushButton[text='A']{
 }
 
 QPushButton[text='A']:pressed {
+    padding-top: 1px;
+	padding-left: 13px;
 	border-bottom-color: #FFE7EB;
 	border-right-color: #FFE7EB;
 	border-top-color: #554043;
 	border-left-color: #554043;
- }</string>
-  </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>801</width>
-      <height>601</height>
-     </rect>
+ }
+
+QPushButton[text='A']::menu-indicator{ left:15px }
+
+QPushButton[text='P']{
+    padding-left:12px;
+	background-color: orange;
+	border-radius: 3px;
+	border-style: inset;
+	border-width: 1px;
+	border-top-color: #FFB326;
+	border-left-color: #FFB326;
+	border-bottom-color: #553700;
+	border-right-color: #553700;
+}
+
+QPushButton[text='P']:pressed {
+    padding-top: 1px;
+	padding-left: 13px;
+	border-bottom-color: #FFB326;
+	border-right-color: #FFB326;
+	border-top-color: #553700;
+	border-left-color: #553700;
+ }
+
+QPushButton[text='P']::menu-indicator{ left:15px }
+
+QPushButton[digInd=&quot;true&quot;]{
+     background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.704545 rgba(14, 54, 0, 255), stop:0.892045 rgba(73, 103, 62, 255), stop:1 rgba(255, 255, 255, 255));
+     border-radius: 10px;
+}
+
+QPushButton:checked[digInd=&quot;true&quot;]{background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.704545 rgba(58, 218, 0, 255), stop:0.892045 rgba(171, 240, 146, 255), stop:1 rgba(255, 255, 255, 255));}
+
+QPushButton[digital=&quot;true&quot;]{
+    background-color: LightSteelBlue;
+    border-radius: 3px;
+	border-style: inset;
+	border-width: 1px;
+	border-top-color: #CBE2FF;
+	border-left-color: #CBE2FF;
+	border-bottom-color: #3A414A;
+	border-right-color: #3A414A;
+}
+
+QPushButton[digital=&quot;true&quot;]:checked{
+    background-color: gold;
+    border-top-color: #554700;
+	border-left-color: #554700;
+	border-bottom-color: #FFDD26;
+	border-right-color: #FFDD26;
+}
+
+QPushButton[digital=&quot;true&quot;]:pressed{
+    background-color: gold;
+    border-top-color: #554700;
+	border-left-color: #554700;
+	border-bottom-color: #FFDD26;
+	border-right-color: #FFDD26;
+}</string>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -137,9 +217,6 @@ QPushButton[text='A']:pressed {
       <property name="text">
        <string>N</string>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pin16">
       <property name="geometry">
@@ -152,9 +229,6 @@ QPushButton[text='A']:pressed {
       </property>
       <property name="text">
        <string>N</string>
-      </property>
-      <property name="analog" stdset="0">
-       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pin13">
@@ -170,9 +244,6 @@ QPushButton[text='A']:pressed {
        <string>N</string>
       </property>
       <property name="checked">
-       <bool>false</bool>
-      </property>
-      <property name="analog" stdset="0">
        <bool>false</bool>
       </property>
      </widget>
@@ -191,9 +262,6 @@ QPushButton[text='A']:pressed {
       <property name="checked">
        <bool>false</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pin11">
       <property name="geometry">
@@ -208,9 +276,6 @@ QPushButton[text='A']:pressed {
        <string>N</string>
       </property>
       <property name="checked">
-       <bool>false</bool>
-      </property>
-      <property name="analog" stdset="0">
        <bool>false</bool>
       </property>
      </widget>
@@ -229,9 +294,6 @@ QPushButton[text='A']:pressed {
       <property name="checked">
        <bool>false</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pin09">
       <property name="geometry">
@@ -246,9 +308,6 @@ QPushButton[text='A']:pressed {
        <string>N</string>
       </property>
       <property name="checked">
-       <bool>false</bool>
-      </property>
-      <property name="analog" stdset="0">
        <bool>false</bool>
       </property>
      </widget>
@@ -267,9 +326,6 @@ QPushButton[text='A']:pressed {
       <property name="checked">
        <bool>false</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pin05">
       <property name="geometry">
@@ -282,9 +338,6 @@ QPushButton[text='A']:pressed {
       </property>
       <property name="text">
        <string>N</string>
-      </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pin04">
@@ -299,9 +352,6 @@ QPushButton[text='A']:pressed {
       <property name="text">
        <string>N</string>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pin03">
       <property name="geometry">
@@ -314,9 +364,6 @@ QPushButton[text='A']:pressed {
       </property>
       <property name="text">
        <string>N</string>
-      </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pin02">
@@ -331,9 +378,6 @@ QPushButton[text='A']:pressed {
       <property name="text">
        <string>N</string>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pin07">
       <property name="geometry">
@@ -346,9 +390,6 @@ QPushButton[text='A']:pressed {
       </property>
       <property name="text">
        <string>N</string>
-      </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pin17">
@@ -363,9 +404,6 @@ QPushButton[text='A']:pressed {
       <property name="text">
        <string>N</string>
       </property>
-      <property name="analog" stdset="0">
-       <bool>true</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pin18">
       <property name="geometry">
@@ -378,9 +416,6 @@ QPushButton[text='A']:pressed {
       </property>
       <property name="text">
        <string>N</string>
-      </property>
-      <property name="analog" stdset="0">
-       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pin19">
@@ -395,9 +430,6 @@ QPushButton[text='A']:pressed {
       <property name="text">
        <string>N</string>
       </property>
-      <property name="analog" stdset="0">
-       <bool>true</bool>
-      </property>
      </widget>
      <widget class="QPushButton" name="pin15">
       <property name="geometry">
@@ -410,9 +442,6 @@ QPushButton[text='A']:pressed {
       </property>
       <property name="text">
        <string>N</string>
-      </property>
-      <property name="analog" stdset="0">
-       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pin14">
@@ -427,29 +456,7 @@ QPushButton[text='A']:pressed {
       <property name="text">
        <string>N</string>
       </property>
-      <property name="analog" stdset="0">
-       <bool>true</bool>
-      </property>
      </widget>
-     <zorder>label</zorder>
-     <zorder>pin16</zorder>
-     <zorder>pin06</zorder>
-     <zorder>pin13</zorder>
-     <zorder>pin12</zorder>
-     <zorder>pin11</zorder>
-     <zorder>pin10</zorder>
-     <zorder>pin09</zorder>
-     <zorder>pin08</zorder>
-     <zorder>pin05</zorder>
-     <zorder>pin04</zorder>
-     <zorder>pin03</zorder>
-     <zorder>pin02</zorder>
-     <zorder>pin07</zorder>
-     <zorder>pin17</zorder>
-     <zorder>pin18</zorder>
-     <zorder>pin19</zorder>
-     <zorder>pin15</zorder>
-     <zorder>pin14</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -487,13 +494,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d14">
@@ -506,12 +513,12 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
+      <property name="digital" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -525,12 +532,12 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
+      <property name="digital" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -544,13 +551,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d07">
@@ -563,13 +570,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d06">
@@ -582,13 +589,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d13">
@@ -601,13 +608,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d15">
@@ -620,12 +627,12 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
+      <property name="digital" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -639,13 +646,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d12">
@@ -658,13 +665,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d16">
@@ -677,12 +684,12 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
+      <property name="digital" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -696,13 +703,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d05">
@@ -715,13 +722,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d19">
@@ -734,12 +741,12 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
+      <property name="digital" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -753,13 +760,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d17">
@@ -772,12 +779,12 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
+      <property name="digital" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -791,13 +798,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="d02">
@@ -810,13 +817,13 @@ QPushButton[text='A']:pressed {
        </rect>
       </property>
       <property name="text">
-       <string>N</string>
+       <string/>
       </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
-      <property name="analog" stdset="0">
-       <bool>false</bool>
+      <property name="digital" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="di12">
@@ -831,15 +838,10 @@ QPushButton[text='A']:pressed {
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -855,15 +857,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -879,19 +876,14 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
        <bool>true</bool>
       </property>
       <property name="autoDefault">
        <bool>false</bool>
+      </property>
+      <property name="digInd" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="di09">
@@ -906,15 +898,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -930,15 +917,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -954,15 +936,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.704545 rgba(58, 218, 0, 255), stop:0.892045 rgba(171, 240, 146, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -978,15 +955,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1002,15 +974,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1026,15 +993,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1050,15 +1012,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1074,15 +1031,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1098,14 +1050,6 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="text">
        <string/>
       </property>
@@ -1117,6 +1061,9 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
       </property>
       <property name="autoDefault">
        <bool>false</bool>
+      </property>
+      <property name="digInd" stdset="0">
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="di14">
@@ -1131,15 +1078,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1155,15 +1097,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1179,15 +1116,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1203,15 +1135,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1227,18 +1154,13 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="text">
        <string/>
       </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1254,15 +1176,10 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
         <height>20</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{
-background-color: beige;
-border-radius: 10px;}
-QPushButton:checked{
-background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0.443182 rgba(58, 218, 0, 255), stop:1 rgba(255, 255, 255, 255));
-}</string>
-      </property>
       <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="digInd" stdset="0">
        <bool>true</bool>
       </property>
      </widget>
@@ -1271,6 +1188,9 @@ background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5
   </widget>
  </widget>
  <resources>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
+  <include location="../resources.qrc"/>
   <include location="../resources.qrc"/>
  </resources>
  <connections/>

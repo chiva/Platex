@@ -5,7 +5,7 @@ This module contains the class MainWindow.
 """
 
 import logging, inspect, time
-from PyQt4.QtGui import QMainWindow, QPushButton
+from PyQt4.QtGui import QMainWindow, QPushButton, QMenu, QActionGroup
 from PyQt4.QtCore import QTimer, pyqtSlot
 from pyfirmata import Arduino, util
 
@@ -26,11 +26,9 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         QMainWindow.__init__(self, parent)
         logging.debug("Created MainWindow")
         self.setupUi(self)
-
-        # Build object name, evaluate the string to obtain it and bind the clicked() signal
-        for x in xrange(2, 20):
-            eval("self.pin%02d" % (x)).clicked.connect(self.pinClicked)
         
+        for x in xrange(2, 20):
+                eval("self.pin%02d" % (x)).setStyleSheet("* {padding:0px}")
         self.board = None
         self.lastIndex = 0
         QTimer.singleShot(0, self.selectPort)
@@ -43,35 +41,39 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         if not self.board:
             self.close()
         else:
+            for x in xrange(2, 20):
+                pin = eval("self.pin%02d" % (x))
+                menu = QMenu(pin)
+                modeGroup = QActionGroup(self)
+                modeGroup.setExclusive(True)
+                none = menu.addAction("&None")
+                modeGroup.addAction(none)
+                none.triggered.connect(self.clickNone)
+                none.setCheckable(True)
+                none.setChecked(True)
+                input = menu.addAction("&Input")
+                modeGroup.addAction(input)
+                input.triggered.connect(self.clickInput)
+                input.setCheckable(True)
+                output = menu.addAction("&Output")
+                modeGroup.addAction(output)
+                output.triggered.connect(self.clickOutput)
+                output.setCheckable(True)
+                if self.board.pins[x].PWM_CAPABLE:
+                    pwm = menu.addAction("&PWM")
+                    modeGroup.addAction(pwm)
+                    pwm.triggered.connect(self.clickPWM)
+                    pwm.setCheckable(True)
+                if self.board.pins[x].type == 2:
+                    analogic = menu.addAction(u"&Analógico")
+                    modeGroup.addAction(analogic)
+                    analogic.triggered.connect(self.clickAnalog)
+                    analogic.setCheckable(True)
+                pin.setMenu(menu)
+                pin.setStyleSheet("/* */") # force stylesheet update
+            
             self.it = util.Iterator(self.board)
             self.it.start()
-
-    @pyqtSlot()
-    def pinClicked(self):
-        pin = self.sender()
-        if not isinstance(pin, QPushButton):
-            logger.warning(inspect.stack()[0][3] + "(): Not a QPushButton")
-            return
-        if not pin.property("analog").isValid():
-            logger.warning("%s(): '%s' shouldn't be connected to this method. Missing 'analog' property", inspect.stack()[0][3], pin.property("objectName").toString())
-            return
-        current = pin.text()
-        if current == 'N':
-            pin.setText('I')
-            mode = 0
-        elif current == 'I':
-            pin.setText('O')
-            mode = 1
-        elif current == 'O' and pin.property("analog").toBool():
-            pin.setText('A')
-            mode = 2
-        else:
-            pin.setText('N')
-            mode = 7
-        number = int(pin.property("objectName").toString()[-2:])
-        self.board.pins[number].mode = mode
-        pin.setStyleSheet("/* */") #Empty stylesheet to force redraw with the stylesheet set in Qt-Designer
-        logger.debug("Changed pin %d mode to '%s'", number, pin.text())
 
     @pyqtSlot()
     def digPinClicked(self):
@@ -94,10 +96,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         """
         Slot documentation goes here.
         """
-        if self.lastIndex == 0:
-            for x in xrange(2, 20):
-                eval("self.pin%02d" % (x)).clicked.disconnect()
-        elif self.lastIndex == 1:
+        if self.lastIndex == 1:
             for x in self.board.ports:
                 x.pinChanged.disconnect()
             for x in xrange(2, 20):
@@ -108,10 +107,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         
         self.lastIndex = index
         
-        if index == 0:
-            for x in xrange(2, 20):
-                eval("self.pin%02d" % (x)).clicked.connect(self.pinClicked)
-        elif index == 1:
+        if index == 1:
             for x in self.board.ports:
                 x.pinChanged.connect(self.updatePin)
             for x in xrange(2, 20):
@@ -127,3 +123,35 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                 elif mode == 0:
                     digInPin.setVisible(True)
                     digInPin.setChecked(self.board.pins[x].read())
+
+    @pyqtSlot()
+    def clickNone(self):
+        self._changeMode(self.sender(), 7)
+
+    @pyqtSlot()
+    def clickInput(self):
+        self._changeMode(self.sender(), 0)
+
+    @pyqtSlot()
+    def clickOutput(self):
+        self._changeMode(self.sender(), 1)
+
+    @pyqtSlot()
+    def clickPWM(self):
+        self._changeMode(self.sender(), 3)
+
+    @pyqtSlot()
+    def clickAnalog(self):
+        self._changeMode(self.sender(), 2)
+
+    def _changeMode(self, action, mode):
+        pin = action.parentWidget().parentWidget()
+        text = ['I', 'O', 'A', 'P', '', '', '', 'N']
+        if not isinstance(pin, QPushButton):
+            logger.warning(inspect.stack()[0][3] + "(): Not a QPushButton")
+            return
+        pin.setText(text[mode])
+        pin.setStyleSheet("/* */") # force stylesheet update
+        number = int(pin.property("objectName").toString()[-2:])
+        self.board.pins[number].mode = mode
+        logger.debug("Changed pin %d mode to '%s'", number, pin.text())
