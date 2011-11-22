@@ -376,7 +376,7 @@ class Port(QObject):
             for pin in self.pins:
                 if pin.mode is INPUT:
                     pin_nr = pin.pin_number - self.port_number * 8
-                    pin.value = (mask & (1 << pin_nr)) > 1
+                    pin.value = mask & (1 << pin_nr)
                     self.pinChanged.emit(pin.pin_number, pin.value)
 
 class Pin(QObject):
