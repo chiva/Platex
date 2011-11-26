@@ -131,7 +131,7 @@ class SelectPortDlg(QDialog):
 
     @pyqtSlot()
     def programFinished(self):
-        output = self.program.readAllStandardError()
+        output = str(self.program.readAllStandardError())
         if output.find("flash written") == -1: # avrdude: xxxx bytes of flash written
             if output.find("Expected signature") != -1: # avrdude: Expected signature for ATMEGA328P is 1E 95 0F
                 error = u"La placa conectada no tiene un chip compatible."
