@@ -13,17 +13,19 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 #. Download and execute `Python(x,y)`_
 
 #. Select at least required libraries:
-    - Python 2.7.x
-    - Python
-        - PyQt
-        - PyQwt
-        - PySerial
 
-#. Download `source code`_
+   - Python 2.7.x
+   - Python
+
+     - PyQt
+     - PyQwt
+     - PySerial
+
+#. Download `Platex source code`_
 
 #. Build Qt files ::
 
-    > mkpyqt.py -b -r
+   > mkpyqt.py -b -r
 
 #. Execute ``platex.pyw``
 
@@ -31,31 +33,31 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 
 #. Install all dependencies ::
 
-    $ sudo apt-get install git avrdude python-qt4 pyqt4-dev-tools python-pip qt4-qmake g++ libqt4-dev python-sip-dev
-    $ sudo pip install pyserial --upgrade
+   $ sudo apt-get install git avrdude python-qt4 pyqt4-dev-tools python-pip qt4-qmake g++ libqt4-dev python-sip-dev
+   $ sudo pip install pyserial --upgrade
 
 #. Install PyQwt
 
-    First, download `source code`_ ::
-    
-    $ tar -zxvf PyQwt-5.2.0.tar.gz
-    $ cd PyQwt-5.2.0/configure
-    $ python configure.py -Q ../qwt-5.2 --qt4 --disable-numarray --disable-numeric --disable-numpy
-    $ make
-    $ make install
-    $ rm -r PyQwt*
+   First, download `PyQwt source code`_ ::
+
+   $ tar -zxvf PyQwt-5.2.0.tar.gz
+   $ cd PyQwt-5.2.0/configure
+   $ python configure.py -Q ../qwt-5.2 --qt4 --disable-numarray --disable-numeric --disable-numpy
+   $ make
+   $ make install
+   $ rm -r PyQwt*
     
 #. Download source code ::
 
-    $ git clone https://github.com/chiva/Platex.git
+   $ git clone https://github.com/chiva/Platex.git
 
 #. Build Qt files ::
 
-    $ python mkpyqt.py -b -r
+   $ python mkpyqt.py -b -r
 
 #. Run main script ::
 
-    $ python platex.pyw
+   $ python platex.pyw
 
 .. [#] For Linux 11.10 Oneiric Ocelot
 
@@ -94,6 +96,6 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 
 .. _Arduino software: http://code.google.com/p/arduino/wiki/Arduino1
 .. _Python(x,y): http://python.org/ftp/python/2.7.2/python-2.7.2.msi
-.. _source code PLATEX: https://github.com/chiva/Platex/downloads
-.. _source code PYQWT: http://prdownloads.sourceforge.net/pyqwt/PyQwt-5.2.0.tar.gz?download
+.. _Platex source code: https://github.com/chiva/Platex/downloads
+.. _PyQwt source code: http://prdownloads.sourceforge.net/pyqwt/PyQwt-5.2.0.tar.gz?download
 .. _macports: https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg
