@@ -6,19 +6,18 @@ Platex is an experimentation platform based on Arduino, Firmata and Python that 
 Installation
 ------------
 
-NOTE: compiled version of the Arduino sketch to run Platex is not provided in the repository, please upload the ``avrdude/PlatexFirmata/PlatexFirmata.ino`` with the `Arduino software`_.
+NOTE: compiled version of the Arduino sketch to run Platex is not provided in the repository, please upload ``avrdude/PlatexFirmata/PlatexFirmata.ino`` with the `Arduino software`_.
 
 **Windows**
 
-#. Install `Python 2.7`_
+#. Download and execute `Python(x,y)`_
 
-#. Install `PyQt 4.8`_
-
-#. Get *pyserial* ::
-
-    > cd \Python27\Scripts
-    > easy_install pip
-    > pip install pyserial
+#. Select at least required libraries:
+    - Python 2.7.x
+    - Python
+        - PyQt
+        - PyQwt
+        - PySerial
 
 #. Download `source code`_
 
@@ -32,9 +31,20 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 
 #. Install all dependencies ::
 
-    $ sudo apt-get install git avrdude python-qt4 pyqt4-dev-tools python-pip
+    $ sudo apt-get install git avrdude python-qt4 pyqt4-dev-tools python-pip qt4-qmake g++ libqt4-dev python-sip-dev
     $ sudo pip install pyserial --upgrade
 
+#. Install PyQwt
+
+    First, download `source code`_ ::
+    
+    $ tar -zxvf PyQwt-5.2.0.tar.gz
+    $ cd PyQwt-5.2.0/configure
+    $ python configure.py -Q ../qwt-5.2 --qt4 --disable-numarray --disable-numeric --disable-numpy
+    $ make
+    $ make install
+    $ rm -r PyQwt*
+    
 #. Download source code ::
 
     $ git clone https://github.com/chiva/Platex.git
@@ -50,6 +60,8 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 .. [#] For Linux 11.10 Oneiric Ocelot
 
 **Mac** [#]_
+
+**Note:** non working right now, instructions will be updated as soon as possible
 
 #. Go to the *App Store* and download and install *Xcode*
 
@@ -81,7 +93,7 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 .. [#] For Mac OS X 10.7 Lion
 
 .. _Arduino software: http://code.google.com/p/arduino/wiki/Arduino1
-.. _Python 2.7: http://python.org/ftp/python/2.7.2/python-2.7.2.msi
-.. _PyQt 4.8: http://www.riverbankcomputing.co.uk/static/Downloads/PyQt4/PyQt-Py2.7-x86-gpl-4.8.6-1.exe
-.. _source code: https://github.com/chiva/Platex/downloads
+.. _Python(x,y): http://python.org/ftp/python/2.7.2/python-2.7.2.msi
+.. _source code PLATEX: https://github.com/chiva/Platex/downloads
+.. _source code PYQWT: http://prdownloads.sourceforge.net/pyqwt/PyQwt-5.2.0.tar.gz?download
 .. _macports: https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg

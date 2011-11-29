@@ -11,6 +11,7 @@ from pyfirmata import Arduino, util
 
 from Ui_mainwindow import Ui_mainWindow
 from selectportdlg import SelectPortDlg
+from analog import AnalogTab
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +32,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                 eval("self.pin%02d" % (x)).setStyleSheet("* {padding:0px}")
         self.board = None
         self.lastIndex = 0
+        
         QTimer.singleShot(0, self.selectPort)
 
     def selectPort(self):
@@ -41,6 +43,9 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         if not self.board:
             self.close()
         else:
+            self.analog = AnalogTab(self, self.analogPlot)
+            self.board.updateAnalog.connect(self.analog.update)
+            self.cbUnit.currentIndexChanged.connect(self.analog.changedUnits)
             for x in xrange(2, 20):
                 pin = eval("self.pin%02d" % (x))
                 menu = QMenu(pin)
@@ -101,9 +106,12 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                 x.pinChanged.disconnect()
             for x in xrange(2, 20):
                 try:
+                    # TODO: disable reporting instead of disconnecting signals
                     eval("self.d%02d" % (x)).clicked.disconnect()
                 except TypeError:
                     pass
+        if self.lastIndex == 2:
+            self.analog.exitTab()
         
         self.lastIndex = index
         
@@ -123,6 +131,8 @@ class MainWindow(QMainWindow, Ui_mainWindow):
                 elif mode == 0:
                     digInPin.setVisible(True)
                     digInPin.setChecked(self.board.pins[x].read())
+        elif index == 2:
+            self.analog.enterTab()
 
     @pyqtSlot()
     def clickNone(self):
@@ -154,4 +164,6 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         pin.setStyleSheet("/* */") # force stylesheet update
         number = int(pin.property("objectName").toString()[-2:])
         self.board.pins[number].mode = mode
+        if mode == 2:
+            self.board.pins[number].disable_reporting()
         logger.debug("Changed pin %d mode to '%s'", number, pin.text())

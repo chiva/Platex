@@ -70,6 +70,8 @@ class Board(QObject):
     _stored_data = []
     _parsing_sysex = False
     
+    updateAnalog = pyqtSignal(int, int)
+
     def __init__(self, port, layout, baudrate=57600, name=None):
         QObject.__init__(self)
         self.sp = serial.Serial(port, baudrate, timeout=5)
@@ -104,10 +106,10 @@ class Board(QObject):
             self.sp.read()
         # TODO Test whether we got a firmware name and version, otherwise there 
         # probably isn't any Firmata installed
-        
+
     def __str__(self):
         return "Board %s on %s" % (self.name, self.sp.port)
-        
+
     def __del__(self):
         ''' 
         The connection with the a board can get messed up when a script is
@@ -115,7 +117,7 @@ class Board(QObject):
         connection). Therefore also do it here and hope it helps.
         '''
         self.exit()
-        
+
     def send_as_two_bytes(self, val):
         self.sp.write(chr(val % 128) + chr(val >> 7))
 
@@ -126,9 +128,6 @@ class Board(QObject):
         board for its type.
         """
         # Create pin instances based on board layout
-        self.analog = []
-        for i in board_layout['analog']:
-            self.analog.append(Pin(self, i))
         # Only create digital ports if the Firmata can use them (ie. not on the Mega...)
         if board_layout['use_ports']:
             self.pins = []
@@ -150,14 +149,13 @@ class Board(QObject):
         for i in board_layout['disabled']:
             self.pins[i].mode = UNAVAILABLE
         # Create a dictionary of 'taken' pins. Used by the get_pin method
-        self.taken = { 'analog' : dict(map(lambda p: (p.pin_number, False), self.analog)),
-                       'digital' : dict(map(lambda p: (p.pin_number, False), self.pins)) }
+        self.taken = { 'digital' : dict(map(lambda p: (p.pin_number, False), self.pins)) }
         # Setup default handlers for standard incoming commands
         self.add_cmd_handler(ANALOG_MESSAGE, self._handle_analog_message)
         self.add_cmd_handler(DIGITAL_MESSAGE, self._handle_digital_message)
         self.add_cmd_handler(REPORT_VERSION, self._handle_report_version)
         self.add_cmd_handler(REPORT_FIRMWARE, self._handle_report_firmware)
-    
+
     def add_cmd_handler(self, cmd, func):
         """ 
         Adds a command handler for a command.
@@ -171,7 +169,7 @@ class Board(QObject):
             return decorator
         func = add_meta(func)
         self._command_handlers[cmd] = func
-        
+
     def get_pin(self, pin_def):
         """
         Returns the activated pin given by the pin definition.
@@ -205,7 +203,7 @@ class Board(QObject):
         else:
             pin.enable_reporting()
         return pin
-        
+
     def pass_time(self, t):
         """ 
         Non-blocking time-out for ``t`` seconds.
@@ -213,7 +211,7 @@ class Board(QObject):
         cont = time.time() + t
         while time.time() < cont:
             time.sleep(0)
-            
+
     def send_sysex(self, sysex_cmd, data=[]):
         """
         Sends a SysEx msg.
@@ -230,7 +228,7 @@ class Board(QObject):
                 byte = chr(byte >> 7) # TODO send multiple bytes
             self.sp.write(byte)
         self.sp.write(chr(END_SYSEX))
-        
+
     def bytes_available(self):
         return self.sp.inWaiting()
 
@@ -276,26 +274,29 @@ class Board(QObject):
             handler(*received_data)
         except ValueError:
             pass
-            
+
     def get_firmata_version(self):
         """
         Returns a version tuple (major, mino) for the firmata firmware on the
         board.
         """
         return self.firmata_version
-        
+
     def exit(self):
         """ Call this to exit cleanly. """
         if hasattr(self, 'sp'):
             self.sp.close()
-        
+
     # Command handlers
-    def _handle_analog_message(self, pin_nr, lsb, msb):
-        value = round(float((msb << 7) + lsb) / 1023, 4)
+    def _handle_analog_message(self, analog_nr, lsb, msb):
+        #value = round(float((msb << 7) + lsb) / 1023, 4)
+        value = (msb << 7) + lsb
         # Only set the value if we are actually reporting
         try:
-            if self.analog[pin_nr].reporting:
-                self.analog[pin_nr].value = value
+            pin_nr = analog_nr + 14
+            if self.pins[pin_nr].reporting:
+                self.pins[pin_nr].value = value
+                self.updateAnalog.emit(analog_nr, value)
         except IndexError:
             raise ValueError
 
@@ -312,7 +313,7 @@ class Board(QObject):
 
     def _handle_report_version(self, major, minor):
         self.firmata_version = (major, minor)
-        
+
     def _handle_report_firmware(self, *data):
         major = data[0]
         minor = data[1]
@@ -321,9 +322,9 @@ class Board(QObject):
 
 class Port(QObject):
     """ An 8-bit port on the board """
-    
+
     pinChanged = pyqtSignal(int, bool)
-    
+
     def __init__(self, board, port_number):
         QObject.__init__(self)
         self.board = board
@@ -337,7 +338,7 @@ class Port(QObject):
             
     def __str__(self):
         return "Digital Port %i on %s" % (self.port_number, self.board)
-        
+
     def enable_reporting(self):
         """ Enable reporting of values for the whole port """
         self.reporting = True
@@ -347,14 +348,14 @@ class Port(QObject):
         for pin in self.pins:
             if pin.mode == INPUT:
                 pin.reporting = True # TODO Shouldn't this happen at the pin?
-        
+
     def disable_reporting(self):
         """ Disable the reporting of the port """
         self.reporting = False
         msg = chr(REPORT_DIGITAL + self.port_number)
         msg += chr(0)
         self.board.sp.write(msg)
-                
+
     def write(self):
         """Set the output pins of the port to the correct state"""
         mask = 0
@@ -391,7 +392,7 @@ class Pin(QObject):
         self._mode = NONE
         self.reporting = False
         self.value = False
-        
+
     def __str__(self):
         type = {ANALOG : 'Analog', DIGITAL : 'Digital'}[self.type]
         return "%s pin %d" % (type, self.pin_number)
@@ -414,31 +415,29 @@ class Pin(QObject):
         command += chr(self.pin_number)
         command += chr(mode)
         self.board.sp.write(command)
-        if mode == INPUT:
-            self.enable_reporting()
-        
+
     def _get_mode(self):
         return self._mode
-        
+
     mode = property(_get_mode, _set_mode)
-    
+
     def enable_reporting(self):
         """ Set an input pin to report values """
-        if self.mode is ANALOG and self.type == ANALOG:
+        if self.mode is ANALOG:
             self.reporting = True
-            msg = chr(REPORT_ANALOG + self.pin_number)
+            msg = chr(REPORT_ANALOG + self.pin_number - 14)
             msg += chr(1)
             self.board.sp.write(msg)
         elif self.mode is not INPUT:
             raise IOError, "%s is not an input and can therefore not report" % self
         else:
             self.port.enable_reporting() # TODO This is not going to work for non-optimized boards like Mega
-        
+
     def disable_reporting(self):
         """ Disable the reporting of an input pin """
         if self.type == ANALOG:
             self.reporting = False
-            msg = chr(REPORT_ANALOG + self.pin_number)
+            msg = chr(REPORT_ANALOG + self.pin_number - 14)
             msg += chr(0)
             self.board.sp.write(msg)
         else:
@@ -452,7 +451,7 @@ class Pin(QObject):
         if self.mode == UNAVAILABLE:
             raise IOError, "Cannot read pin %s"% self.__str__()
         return self.value
-        
+
     def write(self, value):
         """
         Output a voltage from the pin
@@ -481,7 +480,7 @@ class Pin(QObject):
                 msg += chr(value % 128)
                 msg += chr(value >> 7)
                 self.board.sp.write(msg)
-                
+
     def send_sysex(self, sysex_cmd, data=[]):
         """
         Sends a SysEx msg.

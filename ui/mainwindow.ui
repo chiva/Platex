@@ -1184,12 +1184,338 @@ QPushButton[digital=&quot;true&quot;]:pressed{
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Analógico</string>
+     </attribute>
+     <widget class="QwtPlot" name="analogPlot">
+      <property name="geometry">
+       <rect>
+        <x>299</x>
+        <y>40</y>
+        <width>481</width>
+        <height>381</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>271</width>
+        <height>521</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="gbAnalog0">
+         <property name="title">
+          <string>A0</string>
+         </property>
+         <widget class="QwtThermo" name="analogBar0">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>211</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtThermo::BottomScale</enum>
+          </property>
+          <property name="borderWidth">
+           <number>1</number>
+          </property>
+          <property name="maxValue">
+           <double>5.000000000000000</double>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbAnalog0">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="0" column="1" rowspan="7">
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="gbAnalog1">
+         <property name="title">
+          <string>A1</string>
+         </property>
+         <widget class="QwtThermo" name="analogBar1">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>211</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtThermo::BottomScale</enum>
+          </property>
+          <property name="borderWidth">
+           <number>1</number>
+          </property>
+          <property name="maxValue">
+           <double>5.000000000000000</double>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbAnalog1">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="gbAnalog2">
+         <property name="title">
+          <string>A2</string>
+         </property>
+         <widget class="QwtThermo" name="analogBar2">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>211</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtThermo::BottomScale</enum>
+          </property>
+          <property name="borderWidth">
+           <number>1</number>
+          </property>
+          <property name="maxValue">
+           <double>5.000000000000000</double>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbAnalog2">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="gbAnalog3">
+         <property name="title">
+          <string>A3</string>
+         </property>
+         <widget class="QwtThermo" name="analogBar3">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>211</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtThermo::BottomScale</enum>
+          </property>
+          <property name="borderWidth">
+           <number>1</number>
+          </property>
+          <property name="maxValue">
+           <double>5.000000000000000</double>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbAnalog3">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QGroupBox" name="gbAnalog4">
+         <property name="title">
+          <string>A4</string>
+         </property>
+         <widget class="QwtThermo" name="analogBar4">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>211</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtThermo::BottomScale</enum>
+          </property>
+          <property name="borderWidth">
+           <number>1</number>
+          </property>
+          <property name="maxValue">
+           <double>5.000000000000000</double>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbAnalog4">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="gbAnalog5">
+         <property name="title">
+          <string>A5</string>
+         </property>
+         <widget class="QwtThermo" name="analogBar5">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>211</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtThermo::BottomScale</enum>
+          </property>
+          <property name="borderWidth">
+           <number>1</number>
+          </property>
+          <property name="maxValue">
+           <double>5.000000000000000</double>
+          </property>
+         </widget>
+         <widget class="QLabel" name="lbAnalog5">
+          <property name="geometry">
+           <rect>
+            <x>230</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+         <zorder>lbAnalog5</zorder>
+         <zorder>analogBar5</zorder>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Unidades</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="cbUnit"/>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QFrame</extends>
+   <header>qwt_plot.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QwtThermo</class>
+   <extends>QWidget</extends>
+   <header>qwt_thermo.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
   <include location="../resources.qrc"/>
   <include location="../resources.qrc"/>
  </resources>
