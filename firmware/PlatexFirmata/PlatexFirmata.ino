@@ -47,6 +47,25 @@
 #define REGISTER_NOT_SPECIFIED -1
 
 /*==============================================================================
+ * FUNCTION PROTOTYPES
+ *============================================================================*/
+
+extern void readAndReportData(byte, int, byte);
+extern void outputPort(byte, byte, byte);
+extern void checkDigitalInputs(void);
+extern void setPinModeCallback(byte, int);
+extern void analogWriteCallback(byte, int);
+extern void digitalWriteCallback(byte, int);
+extern void reportAnalogCallback(byte, int);
+extern void reportDigitalCallback(byte, int);
+extern void sysexCallback(byte, byte, byte*);
+extern void enableI2CPins();
+extern void disableI2CPins();
+extern void systemResetCallback();
+extern void setup();
+extern void loop();
+
+/*==============================================================================
  * GLOBAL VARIABLES
  *============================================================================*/
 
