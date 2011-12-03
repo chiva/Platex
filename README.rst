@@ -46,7 +46,7 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
    $ make
    $ make install
    $ rm -r PyQwt*
-    
+
 #. Download source code ::
 
    $ git clone https://github.com/chiva/Platex.git
@@ -63,34 +63,11 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 
 **Mac** [#]_
 
-**Note:** non working right now, instructions will be updated as soon as possible
+Execute this in command line
 
-#. Go to the *App Store* and download and install *Xcode*
+``sudo git clone git://gist.github.com/1427486.git build_scripts && sudo ./build_scripts/build-mac.sh``
 
-#. Install macports_
-
-#. Install dependencies ::
-
-    $ sudo port install py27-pyqt4 avrdude && sudo port select --set python python27
-
-#. Go for a very long walk
-
-#. Get *pySerial* ::
-
-    $ sudo easy_install pip
-    $ sudo pip install pyserial
-
-#. Download source code ::
-
-   $ git clone https://github.com/chiva/Platex.git
-
-#. Build Qt files ::
-
-    $ python mkpyqt.py -b -r
-
-#. Run main script ::
-
-    $ python platex.pyw
+DO NOT BUILD IN PRODUCTION ENVIROMENTS !!!
 
 .. [#] For Mac OS X 10.7 Lion
 
@@ -98,4 +75,3 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 .. _Python(x,y): http://python.org/ftp/python/2.7.2/python-2.7.2.msi
 .. _Platex source code: https://github.com/chiva/Platex/downloads
 .. _PyQwt source code: http://prdownloads.sourceforge.net/pyqwt/PyQwt-5.2.0.tar.gz?download
-.. _macports: https://distfiles.macports.org/MacPorts/MacPorts-2.0.3-10.7-Lion.dmg
