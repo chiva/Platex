@@ -31,33 +31,15 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 
 **Linux** [#]_
 
-#. Install all dependencies ::
+Execute this in command line ::
 
-   $ sudo apt-get install git avrdude python-qt4 pyqt4-dev-tools python-pip qt4-qmake g++ libqt4-dev python-sip-dev
-   $ sudo pip install pyserial --upgrade
+$ sudo git clone git://gist.github.com/1427486.git build_scripts && sudo ./build_scripts/build-linux.sh
 
-#. Install PyQwt
+DO NOT BUILD IN PRODUCTION ENVIROMENTS !!!
 
-   First, download `PyQwt source code`_ ::
+Until a packaging and installing toolchain is developed you can run the main script inside the ``Platex`` folder created where you run the previous script ::
 
-   $ tar -zxvf PyQwt-5.2.0.tar.gz
-   $ cd PyQwt-5.2.0/configure
-   $ python configure.py -Q ../qwt-5.2 --qt4 --disable-numarray --disable-numeric --disable-numpy
-   $ make
-   $ make install
-   $ rm -r PyQwt*
-
-#. Download source code ::
-
-   $ git clone https://github.com/chiva/Platex.git
-
-#. Build Qt files ::
-
-   $ python mkpyqt.py -b -r
-
-#. Run main script ::
-
-   $ python platex.pyw
+$ python platex.pyw
 
 .. [#] For Linux 11.10 Oneiric Ocelot
 
@@ -68,6 +50,10 @@ Execute this in command line ::
 $ sudo git clone git://gist.github.com/1427486.git build_scripts && sudo ./build_scripts/build-mac.sh
 
 DO NOT BUILD IN PRODUCTION ENVIROMENTS !!!
+
+Until a packaging and installing toolchain is developed you can run the main script inside the ``Platex`` folder created where you run the previous script ::
+
+$ python platex.pyw
 
 .. [#] For Mac OS X 10.7 Lion
 
