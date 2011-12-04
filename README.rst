@@ -31,7 +31,7 @@ NOTE: compiled version of the Arduino sketch to run Platex is not provided in th
 
 **Linux** [#]_
 
-Execute this in command line ::
+Execute this in the command line ::
 
 $ sudo sh -c "echo "y" | apt-get install git && git clone git://gist.github.com/1427486.git build-scripts && ./build-scripts/build-linux.sh"
 
@@ -45,7 +45,7 @@ $ python platex.pyw
 
 **Mac** [#]_
 
-Execute this in command line ::
+Execute this in the command line ::
 
 $ sudo sh -c "git clone git://gist.github.com/1427486.git build_scripts && ./build_scripts/build-mac.sh"
 
