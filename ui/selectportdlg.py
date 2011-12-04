@@ -114,7 +114,7 @@ class SelectPortDlg(QDialog):
 
     @pyqtSlot()
     def programBoard(self):
-        if not os.path.exists('./avrdude/PlatexFirmata/PlatexFirmata.hex'):
+        if not os.path.exists('./avrdude/PlatexFirmata.hex'):
             logging.warning("Hexadecimal file not found")
             QMessageBox.warning(self, u"¡Atención!", u"No se pudo encontrar el fichero a programar")
             return
@@ -126,7 +126,7 @@ class SelectPortDlg(QDialog):
         self.program = QProcess()
         # avrdude reference: http://www.ladyada.net/learn/avr/avrdude.html
         command = "./avrdude" if POSIX else "avrdude"
-        self.program.start(command+" -q -V -C avrdude.conf -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:./PlatexFirmata/PlatexFirmata.hex:i")
+        self.program.start(command+" -q -V -C avrdude.conf -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:./PlatexFirmata.hex:i")
         self.program.finished.connect(self.programFinished)
 
     @pyqtSlot()
