@@ -21,7 +21,7 @@ class AnalogTab(object):
             self.bars.append({ 'group' : eval("self.mw.gbAnalog%d" % (i)),
                                'bar' : eval("self.mw.analogBar%d" % (i)),
                                'label' : eval("self.mw.lbAnalog%d" % (i)) })
-
+        
         self.plot.setAutoReplot(False)
         self.plot.plotLayout().setAlignCanvasToScales(True)
         grid = QwtPlotGrid()
@@ -71,6 +71,7 @@ class AnalogTab(object):
                     self.curves[channel].setVisible(False)
                     self.bars[channel]['group'].setEnabled(False)
                     self.bars[channel]['bar'].setValue(0)
+                    self.bars['label'].setText(str(0))
         self.plot.replot()
 
     def exitTab(self):
