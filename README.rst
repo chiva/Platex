@@ -31,7 +31,7 @@ Installation
 
 Execute this in the command line ::
 
-$ sudo sh -c "echo "y" | apt-get install git && git clone git://gist.github.com/1427486.git build-scripts && ./build-scripts/build-linux.sh"
+$ sudo bash -c "wget https://raw.github.com/gist/1427486/build-linux.sh && bash build-linux.sh"
 
 DO NOT BUILD IN PRODUCTION ENVIROMENTS !!!
 
@@ -45,7 +45,7 @@ $ python platex.pyw
 
 Execute this in the command line ::
 
-$ sudo sh -c "git clone git://gist.github.com/1427486.git build_scripts && ./build_scripts/build-mac.sh"
+$ sudo bash -c "curl -O https://raw.github.com/gist/1427486/build-mac.sh && bash build-mac.sh"
 
 DO NOT BUILD IN PRODUCTION ENVIROMENTS !!!
 
