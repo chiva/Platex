@@ -122,11 +122,11 @@ class SelectPortDlg(QDialog):
         self.programBtn.setEnabled(False)
         self.stackedWidget.setCurrentIndex(1)
         logging.debug("Programming Arduino board on "+self.portsCmb.currentText())
-        # We suppose avrdude 5.10 or newer is already installed
         os.chdir("./avrdude")
         self.program = QProcess()
         # avrdude reference: http://www.ladyada.net/learn/avr/avrdude.html
-        self.program.start("avrdude -q -V -C avrdude.conf -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:./PlatexFirmata/PlatexFirmata.hex:i")
+        command = "./avrdude" if POSIX else "avrdude"
+        self.program.start(command+" -q -V -C avrdude.conf -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:./PlatexFirmata/PlatexFirmata.hex:i")
         self.program.finished.connect(self.programFinished)
 
     @pyqtSlot()
