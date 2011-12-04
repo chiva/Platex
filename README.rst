@@ -6,8 +6,6 @@ Platex is an experimentation platform based on Arduino, Firmata and Python that 
 Installation
 ------------
 
-NOTE: compiled version of the Arduino sketch to run Platex is not provided in the repository, please upload ``avrdude/PlatexFirmata/PlatexFirmata.ino`` with the `Arduino software`_.
-
 **Windows**
 
 #. Download and execute `Python(x,y)`_
