@@ -51,7 +51,7 @@ DO NOT BUILD IN PRODUCTION ENVIROMENTS !!!
 
 Until a packaging and installing toolchain is developed you can run the main script inside the ``Platex`` folder created where you run the previous script ::
 
-$ python platex.pyw
+$ /Library/Frameworks/Python.framework/Versions/Current/bin/python platex.pyw
 
 .. [#] For Mac OS X 10.7 Lion
 
