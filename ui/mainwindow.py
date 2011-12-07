@@ -13,6 +13,7 @@ from Ui_mainwindow import Ui_mainWindow
 from selectportdlg import SelectPortDlg
 from analog import AnalogTab
 from digital import DigitalTab
+from pwm import PWMTab
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         if not self.board:
             self.close()
         else:
-            self.tabs = ('', DigitalTab(self), AnalogTab(self))
+            self.tabs = ('', DigitalTab(self), AnalogTab(self), PWMTab(self))
             
             self.it = util.Iterator(self.board)
             self.it.start()
