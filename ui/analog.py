@@ -93,10 +93,12 @@ class AnalogTab(object):
     @pyqtSlot(int)
     def changedUnits(self, index):
         if index is 0:
+            logger.debug("Changed PWM units to volts")
             self.mw.analogPlot.setAxisScale(QwtPlot.yLeft, 0, 5)
             for bar in self.bars:
                 bar['bar'].setRange(0, 5)
-        elif index is 1:
+        else:
+            logger.debug("Changed PWM units to counts")
             self.mw.analogPlot.setAxisScale(QwtPlot.yLeft, 0, 1024)
             for bar in self.bars:
                 bar['bar'].setRange(0, 1024)
