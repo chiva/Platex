@@ -11,6 +11,7 @@ from pyfirmata import Arduino, util
 
 from Ui_mainwindow import Ui_mainWindow
 from selectportdlg import SelectPortDlg
+from mode import ModeTab
 from analog import AnalogTab
 from digital import DigitalTab
 from pwm import PWMTab
@@ -46,7 +47,8 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         if not self.board:
             self.close()
         else:
-            self.tabs = ('', DigitalTab(self), AnalogTab(self), PWMTab(self))
+            self.tabs = (ModeTab(self), DigitalTab(self), AnalogTab(self), PWMTab(self))
+            self.tabs[0].enterTab()
             
             self.it = util.Iterator(self.board)
             self.it.start()
@@ -56,8 +58,6 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         """
         Slot documentation goes here.
         """
-        if self.lastIndex:
-            self.tabs[self.lastIndex].exitTab()
-        if index:
-            self.tabs[index].enterTab()
+        self.tabs[self.lastIndex].exitTab()
+        self.tabs[index].enterTab()
         self.lastIndex = index
