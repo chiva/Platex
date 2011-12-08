@@ -1859,7 +1859,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
        <string>Unidades</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="cbUnit_2">
+     <widget class="QComboBox" name="cbPwmUnit">
       <property name="geometry">
        <rect>
         <x>140</x>
@@ -1891,9 +1891,6 @@ QPushButton[digital=&quot;true&quot;]:pressed{
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
-  <include location="../resources.qrc"/>
   <include location="../resources.qrc"/>
  </resources>
  <connections>
@@ -1980,16 +1977,16 @@ QPushButton[digital=&quot;true&quot;]:pressed{
   <connection>
    <sender>pwmBar11</sender>
    <signal>valueChanged(double)</signal>
-   <receiver>pwmBar11</receiver>
-   <slot>setValue(double)</slot>
+   <receiver>lbPwm11</receiver>
+   <slot>setNum(double)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>141</x>
      <y>487</y>
     </hint>
     <hint type="destinationlabel">
-     <x>141</x>
-     <y>487</y>
+     <x>267</x>
+     <y>469</y>
     </hint>
    </hints>
   </connection>
