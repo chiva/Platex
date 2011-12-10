@@ -1598,352 +1598,349 @@ QPushButton[digital=&quot;true&quot;]:pressed{
      <attribute name="title">
       <string>PWM</string>
      </attribute>
-     <widget class="QGroupBox" name="gbPwm03">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>30</x>
         <y>20</y>
-        <width>260</width>
-        <height>71</height>
+        <width>261</width>
+        <height>541</height>
        </rect>
       </property>
-      <property name="title">
-       <string>PWM 3</string>
-      </property>
-      <widget class="QLabel" name="lbPwm3">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>20</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-      <widget class="QwtSlider" name="pwmBar03">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>200</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="mass">
-        <double>0.000000000000000</double>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="scalePosition">
-        <enum>QwtSlider::BottomScale</enum>
-       </property>
-       <property name="bgStyle">
-        <enum>QwtSlider::BgTrough</enum>
-       </property>
-       <property name="thumbLength">
-        <number>20</number>
-       </property>
-       <property name="thumbWidth">
-        <number>15</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="gbPwm05">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>100</y>
-        <width>260</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>PWM 5</string>
-      </property>
-      <widget class="QLabel" name="lbPwm5">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>20</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-      <widget class="QwtSlider" name="pwmBar05">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>200</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="mass">
-        <double>0.000000000000000</double>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="scalePosition">
-        <enum>QwtSlider::BottomScale</enum>
-       </property>
-       <property name="bgStyle">
-        <enum>QwtSlider::BgTrough</enum>
-       </property>
-       <property name="thumbLength">
-        <number>20</number>
-       </property>
-       <property name="thumbWidth">
-        <number>15</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="gbPwm06">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>180</y>
-        <width>260</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>PWM 6</string>
-      </property>
-      <widget class="QLabel" name="lbPwm6">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>20</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-      <widget class="QwtSlider" name="pwmBar06">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>200</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="mass">
-        <double>0.000000000000000</double>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="scalePosition">
-        <enum>QwtSlider::BottomScale</enum>
-       </property>
-       <property name="bgStyle">
-        <enum>QwtSlider::BgTrough</enum>
-       </property>
-       <property name="thumbLength">
-        <number>20</number>
-       </property>
-       <property name="thumbWidth">
-        <number>15</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="gbPwm11">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>420</y>
-        <width>260</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>PWM 11</string>
-      </property>
-      <widget class="QLabel" name="lbPwm11">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>20</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-      <widget class="QwtSlider" name="pwmBar11">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>200</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="mass">
-        <double>0.000000000000000</double>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="scalePosition">
-        <enum>QwtSlider::BottomScale</enum>
-       </property>
-       <property name="bgStyle">
-        <enum>QwtSlider::BgTrough</enum>
-       </property>
-       <property name="thumbLength">
-        <number>20</number>
-       </property>
-       <property name="thumbWidth">
-        <number>15</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="gbPwm10">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>340</y>
-        <width>260</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>PWM 10</string>
-      </property>
-      <widget class="QLabel" name="lbPwm10">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>20</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-      <widget class="QwtSlider" name="pwmBar10">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>200</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="mass">
-        <double>0.000000000000000</double>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="scalePosition">
-        <enum>QwtSlider::BottomScale</enum>
-       </property>
-       <property name="bgStyle">
-        <enum>QwtSlider::BgTrough</enum>
-       </property>
-       <property name="thumbLength">
-        <number>20</number>
-       </property>
-       <property name="thumbWidth">
-        <number>15</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="gbPwm09">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>260</y>
-        <width>260</width>
-        <height>71</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>PWM 9</string>
-      </property>
-      <widget class="QLabel" name="lbPwm9">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>20</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-      <widget class="QwtSlider" name="pwmBar09">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>200</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="mass">
-        <double>0.000000000000000</double>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="scalePosition">
-        <enum>QwtSlider::BottomScale</enum>
-       </property>
-       <property name="bgStyle">
-        <enum>QwtSlider::BgTrough</enum>
-       </property>
-       <property name="thumbLength">
-        <number>20</number>
-       </property>
-       <property name="thumbWidth">
-        <number>15</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>520</y>
-        <width>44</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Unidades</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="cbPwmUnit">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>523</y>
-        <width>69</width>
-        <height>20</height>
-       </rect>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="gbPwm03">
+         <property name="title">
+          <string>PWM 3</string>
+         </property>
+         <widget class="QLabel" name="lbPwm3">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+         <widget class="QwtSlider" name="pwmBar03">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>200</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="mass">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtSlider::BottomScale</enum>
+          </property>
+          <property name="bgStyle">
+           <enum>QwtSlider::BgTrough</enum>
+          </property>
+          <property name="thumbLength">
+           <number>20</number>
+          </property>
+          <property name="thumbWidth">
+           <number>15</number>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gbPwm05">
+         <property name="title">
+          <string>PWM 5</string>
+         </property>
+         <widget class="QLabel" name="lbPwm5">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+         <widget class="QwtSlider" name="pwmBar05">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>200</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="mass">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtSlider::BottomScale</enum>
+          </property>
+          <property name="bgStyle">
+           <enum>QwtSlider::BgTrough</enum>
+          </property>
+          <property name="thumbLength">
+           <number>20</number>
+          </property>
+          <property name="thumbWidth">
+           <number>15</number>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gbPwm06">
+         <property name="title">
+          <string>PWM 6</string>
+         </property>
+         <widget class="QLabel" name="lbPwm6">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+         <widget class="QwtSlider" name="pwmBar06">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>200</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="mass">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtSlider::BottomScale</enum>
+          </property>
+          <property name="bgStyle">
+           <enum>QwtSlider::BgTrough</enum>
+          </property>
+          <property name="thumbLength">
+           <number>20</number>
+          </property>
+          <property name="thumbWidth">
+           <number>15</number>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gbPwm09">
+         <property name="title">
+          <string>PWM 9</string>
+         </property>
+         <widget class="QLabel" name="lbPwm9">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+         <widget class="QwtSlider" name="pwmBar09">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>200</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="mass">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtSlider::BottomScale</enum>
+          </property>
+          <property name="bgStyle">
+           <enum>QwtSlider::BgTrough</enum>
+          </property>
+          <property name="thumbLength">
+           <number>20</number>
+          </property>
+          <property name="thumbWidth">
+           <number>15</number>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gbPwm10">
+         <property name="title">
+          <string>PWM 10</string>
+         </property>
+         <widget class="QLabel" name="lbPwm10">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+         <widget class="QwtSlider" name="pwmBar10">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>200</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="mass">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtSlider::BottomScale</enum>
+          </property>
+          <property name="bgStyle">
+           <enum>QwtSlider::BgTrough</enum>
+          </property>
+          <property name="thumbLength">
+           <number>20</number>
+          </property>
+          <property name="thumbWidth">
+           <number>15</number>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gbPwm11">
+         <property name="title">
+          <string>PWM 11</string>
+         </property>
+         <widget class="QLabel" name="lbPwm11">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>20</y>
+            <width>31</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+         <widget class="QwtSlider" name="pwmBar11">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>200</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="mass">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="scalePosition">
+           <enum>QwtSlider::BottomScale</enum>
+          </property>
+          <property name="bgStyle">
+           <enum>QwtSlider::BgTrough</enum>
+          </property>
+          <property name="thumbLength">
+           <number>20</number>
+          </property>
+          <property name="thumbWidth">
+           <number>15</number>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Unidades</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cbPwmUnit"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_5">

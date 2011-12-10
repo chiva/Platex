@@ -133,6 +133,7 @@ class ServoTab(object):
                 #eval("self.mw.servoCb%d" % x).setChecked(True)
             combo.blockSignals(False)
 
+    @pyqtSlot(int, int)
     def _updateServo(self, group, angle):
         pin = int(eval("self.mw.servoCmb%d" % group).currentText())
         logger.debug("Moved servo in pin "+str(pin)+" to "+str(angle)+"º")
