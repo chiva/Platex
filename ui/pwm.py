@@ -35,11 +35,12 @@ class PWMTab(object):
     def enterTab(self):
         logger.debug("Entering PWM tab")
         for x in self.mw.board.pins:
-            if x.PWM_CAPABLE:            
+            if x.PWM_CAPABLE:
                 eval("self.mw.gbPwm%02d" % x.pin_number).setEnabled(x.mode is 3)
+                eval("self.mw.pwmBar%02d" % x.pin_number).setValid(x.mode is 3)
 
     def exitTab(self):
-        logger.debug("Exiting digital tab")
+        logger.debug("Exiting PWM tab")
 
     @pyqtSlot(int)
     def changedUnits(self, index):
