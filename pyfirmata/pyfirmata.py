@@ -16,6 +16,7 @@ DIGITAL_PULSE = 0x91        # SysEx command to send a digital pulse
 # SHIFTOUT_MESSAGE = 0xB0   # proposed shiftOut msg (SysEx)
 REPORT_ANALOG = 0xC0        # enable analog input by pin #
 REPORT_DIGITAL = 0xD0       # enable digital input by port pair
+SAMPLING_INTERVAL = 0x7A    # time between loop executions
 START_SYSEX = 0xF0          # start a MIDI SysEx msg
 SET_PIN_MODE = 0xF4         # set a pin to INPUT/OUTPUT/PWM/etc
 END_SYSEX = 0xF7            # end a MIDI SysEx msg
@@ -305,6 +306,9 @@ class Board(QObject):
         # don't set pin.mode as that calls this method
         self.pins[pin]._mode = SERVO
         self.pins[pin].write(angle)
+
+    def sampling_interval(self, interval=19):
+        self.send_sysex(SAMPLING_INTERVAL, to_two_bytes(interval))
 
     def exit(self):
         """ Call this to exit cleanly. """
