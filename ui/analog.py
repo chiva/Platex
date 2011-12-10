@@ -90,16 +90,32 @@ class AnalogTab(object):
                     x.append(0)
                 return x
 
+    def _resizeHistory(self, factor):
+        for channel in xrange(0, len(self.data)):
+            for sample in xrange(0, len(self.data[channel])):
+                self.data[channel][sample] *= factor
+            self.curves[channel].setData(range(0, HISTORY+1), self.data[channel])
+            if self.mw.cbUnit.currentIndex() is 0:
+                self.bars[channel]['bar'].setValue(round(self.data[channel][HISTORY], 2))
+                self.bars[channel]['label'].setText(str(round(self.data[channel][HISTORY], 2)))
+            else:
+                self.bars[channel]['bar'].setValue(int(self.data[channel][HISTORY]))
+                self.bars[channel]['label'].setText(str(int(self.data[channel][HISTORY])))
+
     @pyqtSlot(int)
     def changedUnits(self, index):
         if index is 0:
             logger.debug("Changed analog units to volts")
+            self._resizeHistory(5.0/1024)
             self.mw.analogPlot.setAxisScale(QwtPlot.yLeft, 0, 5)
+            self.mw.analogPlot.replot()
             for bar in self.bars:
                 bar['bar'].setRange(0, 5)
         else:
             logger.debug("Changed analog units to counts")
+            self._resizeHistory(1024.0/5)
             self.mw.analogPlot.setAxisScale(QwtPlot.yLeft, 0, 1024)
+            self.mw.analogPlot.replot()
             for bar in self.bars:
                 bar['bar'].setRange(0, 1024)
         self.mw.analogPlot.replot()
