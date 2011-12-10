@@ -17,7 +17,7 @@ class PWMTab(object):
                 slider = eval("self.mw.pwmBar%02d" % x.pin_number)
                 slider.valueChanged.connect(self.updatePwm)
                 self.sliders.append(slider)
-                
+            
         self.mw.cbPwmUnit.insertItems(0, ("Porcentaje", "Cuentas"))
         self.mw.cbPwmUnit.currentIndexChanged.connect(self.changedUnits)
 
@@ -36,8 +36,11 @@ class PWMTab(object):
         logger.debug("Entering PWM tab")
         for x in self.mw.board.pins:
             if x.PWM_CAPABLE:
+                slider = eval("self.mw.pwmBar%02d" % x.pin_number)
+                slider.blockSignals(True)
                 eval("self.mw.gbPwm%02d" % x.pin_number).setEnabled(x.mode is 3)
-                eval("self.mw.pwmBar%02d" % x.pin_number).setValid(x.mode is 3)
+                slider.setValid(x.mode is 3)
+                slider.blockSignals(False)
 
     def exitTab(self):
         logger.debug("Exiting PWM tab")
