@@ -295,7 +295,7 @@ class Board(QObject):
         Configure a pin as servo with min_pulse, max_pulse and first angle.
         ``min_pulse`` and ``max_pulse`` default to the arduino defaults.
         """
-        if pin > len(self.digital) or self.digital[pin].mode == UNAVAILABLE:
+        if pin > len(self.pins) or self.pins[pin].mode == UNAVAILABLE:
             raise IOError("Pin %s is not a valid servo pin")
         data = itertools.chain([pin], to_two_bytes(min_pulse),
                                         to_two_bytes(max_pulse))
@@ -303,8 +303,8 @@ class Board(QObject):
         
         # set pin._mode to SERVO so that it sends analog messages
         # don't set pin.mode as that calls this method
-        self.digital[pin]._mode = SERVO
-        self.digital[pin].write(angle)
+        self.pins[pin]._mode = SERVO
+        self.pins[pin].write(angle)
 
     def exit(self):
         """ Call this to exit cleanly. """
