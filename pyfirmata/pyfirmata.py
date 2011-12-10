@@ -308,6 +308,8 @@ class Board(QObject):
         self.pins[pin].write(angle)
 
     def sampling_interval(self, interval=19):
+        if interval < 19: inteval = 19
+        elif interval > 16383: interval = 16383 
         self.send_sysex(SAMPLING_INTERVAL, to_two_bytes(interval))
 
     def exit(self):

@@ -1198,16 +1198,16 @@ QPushButton[digital=&quot;true&quot;]:pressed{
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>271</width>
+        <x>21</x>
+        <y>31</y>
+        <width>274</width>
         <height>521</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
         <widget class="QGroupBox" name="gbAnalog0">
          <property name="title">
@@ -1552,8 +1552,8 @@ QPushButton[digital=&quot;true&quot;]:pressed{
         </widget>
        </item>
        <item row="6" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -1566,18 +1566,79 @@ QPushButton[digital=&quot;true&quot;]:pressed{
            </property>
           </spacer>
          </item>
-         <item>
+         <item row="0" column="1">
           <widget class="QLabel" name="label_2">
            <property name="text">
             <string>Unidades</string>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QComboBox" name="cbUnit"/>
+         <item row="0" column="2">
+          <widget class="QComboBox" name="analogUnits"/>
          </item>
-         <item>
+         <item row="0" column="3" colspan="2">
           <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="0">
+          <spacer name="horizontalSpacer_10">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Velocidad</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2" colspan="2">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QSpinBox" name="analogTime">
+             <property name="minimum">
+              <number>19</number>
+             </property>
+             <property name="maximum">
+              <number>16383</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="analogUnitsTime">
+             <item>
+              <property name="text">
+               <string>ms</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>s</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="4">
+          <spacer name="horizontalSpacer_9">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -1598,7 +1659,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
      <attribute name="title">
       <string>PWM</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>30</x>
