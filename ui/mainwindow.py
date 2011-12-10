@@ -4,7 +4,7 @@
 This module contains the class MainWindow.
 """
 
-import logging, inspect, time
+import logging
 from PyQt4.QtGui import QMainWindow, QPushButton, QMenu, QActionGroup
 from PyQt4.QtCore import QTimer, pyqtSlot
 from pyfirmata import Arduino, util
