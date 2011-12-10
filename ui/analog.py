@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+from functools import partial
 
 from PyQt4.Qwt5 import QwtPlotGrid, QwtPlotCurve, QwtPlot, QwtPlotItem
 from PyQt4.Qt import Qt, QPen
@@ -13,13 +14,15 @@ class AnalogTab(object):
 
     def __init__(self, mwHandle):
         self.mw = mwHandle
-        self.curves = {}
-        self.data = {}
+        self.curves = list()
+        self.data = list()
         self.bars = list()
         for i in xrange(0, 6):
             self.bars.append({ 'group' : eval("self.mw.gbAnalog%d" % (i)),
                                'bar' : eval("self.mw.analogBar%d" % (i)),
-                               'label' : eval("self.mw.lbAnalog%d" % (i)) })
+                               'label' : eval("self.mw.lbAnalog%d" % (i)), 
+                               'active' : eval("self.mw.analogShow%d" % (i)) })
+            eval("self.mw.analogShow%d" % (i)).stateChanged.connect(partial(self._channelVisible, i))
         
         self.mw.analogPlot.setAutoReplot(False)
         self.mw.analogPlot.plotLayout().setAlignCanvasToScales(True)
@@ -33,29 +36,37 @@ class AnalogTab(object):
         self.mw.analogPlot.setAxisScale(QwtPlot.yLeft, 0, 5)
         
         self.mw.cbUnit.insertItems(0, ("Voltios", "Cuentas"))
-        self.mw.board.updateAnalog.connect(self.update)
-        self.mw.cbUnit.currentIndexChanged.connect(self.changedUnits)
+        self.mw.board.updateAnalog.connect(self._newSample)
+        self.mw.cbUnit.currentIndexChanged.connect(self._changedUnits)
         
         colors = (Qt.blue, Qt.red, Qt.black, Qt.darkGreen, Qt.darkCyan, Qt.magenta)
         for i in xrange(0, 6):
             curve = QwtPlotCurve()
             curve.setPen(QPen(colors[i], 2))
             curve.attach(self.mw.analogPlot)
-            self.curves[i] = curve
-            self.data[i] = self._zeros(HISTORY+1)
+            self.curves.append(curve)
+            self.data.append(self._zeros(HISTORY+1))
             self.bars[i]['bar'].setFillBrush(colors[i])
         
         self.mw.analogPlot.replot()
+        self.mw.board.sampling_interval(500)
 
     @pyqtSlot(int, int)
-    def update(self, channel, value):
+    def _newSample(self, channel, value):
         if self.mw.cbUnit.currentIndex() is 0:
             value = round(float(value*5) / 1023, 2)
         self.data[channel] = self.data[channel][1:]
         self.data[channel].append(value)
         self.curves[channel].setData(range(0, HISTORY+1), self.data[channel])
-        self.bars[channel]['bar'].setValue(value)
-        self.bars[channel]['label'].setText(str(value))
+        self._updatePlot(channel)
+
+    def _updatePlot(self, channel):
+        if self.mw.cbUnit.currentIndex() is 0:
+            self.bars[channel]['bar'].setValue(round(self.data[channel][HISTORY], 2))
+            self.bars[channel]['label'].setText(str(round(self.data[channel][HISTORY], 2)))
+        else:
+            self.bars[channel]['bar'].setValue(int(self.data[channel][HISTORY]))
+            self.bars[channel]['label'].setText(str(int(self.data[channel][HISTORY])))
         self.mw.analogPlot.replot()
 
     def enterTab(self):
@@ -66,7 +77,7 @@ class AnalogTab(object):
                 if pin.mode is 2:
                     pin.enable_reporting()
                     logger.debug("Enabled analog reporting of analog pin "+str(channel))
-                    self.curves[channel].setVisible(True)
+                    self.curves[channel].setVisible(self.bars[channel]['active'].isChecked())
                     self.bars[channel]['group'].setEnabled(True)
                 else:
                     self.curves[channel].setVisible(False)
@@ -95,15 +106,10 @@ class AnalogTab(object):
             for sample in xrange(0, len(self.data[channel])):
                 self.data[channel][sample] *= factor
             self.curves[channel].setData(range(0, HISTORY+1), self.data[channel])
-            if self.mw.cbUnit.currentIndex() is 0:
-                self.bars[channel]['bar'].setValue(round(self.data[channel][HISTORY], 2))
-                self.bars[channel]['label'].setText(str(round(self.data[channel][HISTORY], 2)))
-            else:
-                self.bars[channel]['bar'].setValue(int(self.data[channel][HISTORY]))
-                self.bars[channel]['label'].setText(str(int(self.data[channel][HISTORY])))
+            self._updatePlot(channel)
 
     @pyqtSlot(int)
-    def changedUnits(self, index):
+    def _changedUnits(self, index):
         if index is 0:
             logger.debug("Changed analog units to volts")
             self._resizeHistory(5.0/1024)
@@ -119,3 +125,8 @@ class AnalogTab(object):
             for bar in self.bars:
                 bar['bar'].setRange(0, 1024)
         self.mw.analogPlot.replot()
+
+    @pyqtSlot(int, int)
+    def _channelVisible(self, channel, state):
+        self.curves[channel].setVisible(state)
+        self._updatePlot(channel)
