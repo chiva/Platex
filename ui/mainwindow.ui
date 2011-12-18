@@ -1198,7 +1198,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
        </rect>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>21</x>
@@ -2036,7 +2036,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>61</width>
+              <width>77</width>
               <height>481</height>
              </rect>
             </property>
@@ -2117,7 +2117,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>61</width>
+              <width>77</width>
               <height>481</height>
              </rect>
             </property>
@@ -2198,7 +2198,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>61</width>
+              <width>77</width>
               <height>481</height>
              </rect>
             </property>
@@ -2279,7 +2279,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>61</width>
+              <width>77</width>
               <height>481</height>
              </rect>
             </property>
@@ -2360,7 +2360,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>61</width>
+              <width>77</width>
               <height>481</height>
              </rect>
             </property>
@@ -2441,7 +2441,7 @@ QPushButton[digital=&quot;true&quot;]:pressed{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>61</width>
+              <width>77</width>
               <height>481</height>
              </rect>
             </property>
@@ -2503,6 +2503,849 @@ QPushButton[digital=&quot;true&quot;]:pressed{
         </widget>
        </item>
       </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>Motores</string>
+     </attribute>
+     <widget class="QStackedWidget" name="motorSw">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>150</y>
+        <width>531</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page">
+       <widget class="QGroupBox" name="groupBox">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>511</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Motor A</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget_5">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>491</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="motorPwmLabelA0">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="text">
+               <string>&amp;PWM</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorPwmA0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="motorPwmA0">
+              <item>
+               <property name="text">
+                <string>10</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="motorDirLabelA0">
+              <property name="text">
+               <string>&amp;Dirección</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorDirA0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="motorDirA0">
+              <item>
+               <property name="text">
+                <string>13</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QSlider" name="motorSliA0">
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::TicksBelow</enum>
+              </property>
+              <property name="tickInterval">
+               <number>20</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="motorPerA0">
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QPushButton" name="motorStopA0">
+              <property name="text">
+               <string>&amp;Parar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="motorActA0">
+              <property name="text">
+               <string>&amp;Activar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>140</y>
+          <width>511</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Motor B</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>491</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <widget class="QLabel" name="motorPwmLabelB0">
+              <property name="text">
+               <string>&amp;PWM</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorPwmB0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="motorPwmB0">
+              <item>
+               <property name="text">
+                <string>9</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="motorDirLabelB0">
+              <property name="text">
+               <string>&amp;Dirección</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorDirB0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="motorDirB0">
+              <item>
+               <property name="text">
+                <string>12</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QSlider" name="motorSliB0">
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::TicksBelow</enum>
+              </property>
+              <property name="tickInterval">
+               <number>20</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="motorPerB0">
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QPushButton" name="motorStopB0">
+              <property name="text">
+               <string>&amp;Parar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="motorActB0">
+              <property name="text">
+               <string>&amp;Activar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="motorSAll0">
+        <property name="geometry">
+         <rect>
+          <x>394</x>
+          <y>100</y>
+          <width>121</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Parar &amp;todo</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_2">
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>511</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Motor A</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget_6">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>491</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="0">
+             <widget class="QLabel" name="motorPwmLabelA1">
+              <property name="text">
+               <string>&amp;PWM</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorPwmA0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="motorPwmA1">
+              <item>
+               <property name="text">
+                <string>10</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="motorDirLabelA1">
+              <property name="text">
+               <string>&amp;Dirección</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorDirA0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="motorDirA1">
+              <item>
+               <property name="text">
+                <string>12</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QSlider" name="motorSliA1">
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::TicksBelow</enum>
+              </property>
+              <property name="tickInterval">
+               <number>20</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="motorPerA1">
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QPushButton" name="motorStopA1">
+              <property name="text">
+               <string>&amp;Parar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="motorActA1">
+              <property name="text">
+               <string>&amp;Activar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>140</y>
+          <width>511</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Motor B</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>491</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <layout class="QGridLayout" name="gridLayout_6">
+            <item row="0" column="0">
+             <widget class="QLabel" name="motorPwmLabelB1">
+              <property name="text">
+               <string>&amp;PWM</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorPwmB0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="motorPwmB1">
+              <item>
+               <property name="text">
+                <string>11</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="motorDirLabelB1">
+              <property name="text">
+               <string>&amp;Dirección</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorDirB0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="motorDirB1">
+              <item>
+               <property name="text">
+                <string>13</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QSlider" name="motorSliB1">
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::TicksBelow</enum>
+              </property>
+              <property name="tickInterval">
+               <number>20</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="motorPerB1">
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QPushButton" name="motorStopB1">
+              <property name="text">
+               <string>&amp;Parar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="motorActB1">
+              <property name="text">
+               <string>&amp;Activar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="motorSAll1">
+        <property name="geometry">
+         <rect>
+          <x>394</x>
+          <y>100</y>
+          <width>121</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Parar &amp;todo</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_3">
+       <widget class="QGroupBox" name="groupBox_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>511</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Motor A</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget_7">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>491</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
+          <item>
+           <layout class="QGridLayout" name="gridLayout_7">
+            <item row="0" column="0">
+             <widget class="QLabel" name="motorPwmLabelA2">
+              <property name="text">
+               <string>&amp;PWM</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorPwmA0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="motorPwmA2">
+              <item>
+               <property name="text">
+                <string>00</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="motorDirLabelA2">
+              <property name="text">
+               <string>&amp;Dirección</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorDirA0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="motorDirA2">
+              <item>
+               <property name="text">
+                <string>00</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QSlider" name="motorSliA2">
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::TicksBelow</enum>
+              </property>
+              <property name="tickInterval">
+               <number>20</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="motorPerA2">
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QPushButton" name="motorStopA2">
+              <property name="text">
+               <string>&amp;Parar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="motorActA2">
+              <property name="text">
+               <string>&amp;Activar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+       <widget class="QPushButton" name="motorSAll2">
+        <property name="geometry">
+         <rect>
+          <x>394</x>
+          <y>100</y>
+          <width>121</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Parar &amp;todo</string>
+        </property>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_6">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>140</y>
+          <width>511</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Motor B</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget_4">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>491</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_15">
+          <item>
+           <layout class="QGridLayout" name="gridLayout_8">
+            <item row="0" column="0">
+             <widget class="QLabel" name="motorPwmLabelB2">
+              <property name="text">
+               <string>&amp;PWM</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorPwmB0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="motorPwmB2">
+              <item>
+               <property name="text">
+                <string>00</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="motorDirLabelB2">
+              <property name="text">
+               <string>&amp;Dirección</string>
+              </property>
+              <property name="buddy">
+               <cstring>motorDirB0</cstring>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QComboBox" name="motorDirB2">
+              <item>
+               <property name="text">
+                <string>00</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_16">
+            <item>
+             <widget class="QSlider" name="motorSliB2">
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="tickPosition">
+               <enum>QSlider::TicksBelow</enum>
+              </property>
+              <property name="tickInterval">
+               <number>20</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="motorPerB2">
+              <property name="suffix">
+               <string>%</string>
+              </property>
+              <property name="minimum">
+               <number>-100</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QPushButton" name="motorStopB2">
+              <property name="text">
+               <string>&amp;Parar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="motorActB2">
+              <property name="text">
+               <string>&amp;Activar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="motorBut0">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>170</y>
+        <width>101</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Motor Shield v1.0</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="motorBut1">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>200</y>
+        <width>101</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Motor Shield v3.0</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="motorBut2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>230</y>
+        <width>101</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Personalizado</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -2620,8 +3463,200 @@ QPushButton[digital=&quot;true&quot;]:pressed{
      <y>487</y>
     </hint>
     <hint type="destinationlabel">
-     <x>267</x>
-     <y>469</y>
+     <x>270</x>
+     <y>467</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorSliA0</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorPerA0</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>521</x>
+     <y>226</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>616</x>
+     <y>229</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorPerA0</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorSliA0</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>591</x>
+     <y>221</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>541</x>
+     <y>218</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorPerA1</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorSliA1</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>596</x>
+     <y>223</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>529</x>
+     <y>223</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorSliA1</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorPerA1</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>560</x>
+     <y>233</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>582</x>
+     <y>233</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorSliB0</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorPerB0</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>525</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>592</x>
+     <y>359</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorPerB0</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorSliB0</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>584</x>
+     <y>349</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>536</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorSliB1</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorPerB1</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>544</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>588</x>
+     <y>358</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorPerB1</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorSliB1</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>578</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>547</x>
+     <y>345</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorSliA2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorPerA2</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>492</x>
+     <y>226</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>614</x>
+     <y>225</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorPerA2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorSliA2</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>575</x>
+     <y>234</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>520</x>
+     <y>234</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorSliB2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorPerB2</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>532</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>603</x>
+     <y>348</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>motorPerB2</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>motorSliB2</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>361</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>535</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>
