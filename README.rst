@@ -29,7 +29,7 @@ Installation
 
 **Linux** [#]_
 
-Execute this in the command line ::
+Execute this in a terminal ::
 
 $ sudo bash -c "wget https://raw.github.com/gist/1427486/build-linux.sh && bash build-linux.sh"
 
@@ -43,7 +43,7 @@ $ python platex.pyw
 
 **Mac** [#]_
 
-Execute this in the command line ::
+Execute this in a terminal ::
 
 $ sudo bash -c "curl -O https://raw.github.com/gist/1427486/build-mac.sh && bash build-mac.sh"
 
