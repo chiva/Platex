@@ -136,5 +136,5 @@ class ServoTab(object):
     @pyqtSlot(int, int)
     def _updateServo(self, group, angle):
         pin = int(eval("self.mw.servoCmb%d" % group).currentText())
-        logger.debug("Moved servo in pin "+str(pin)+" to "+str(angle)+"º")
+        logger.debug("Moved servo on pin "+str(pin)+" to "+str(angle)+"º")
         self.mw.board.pins[pin].write(angle)

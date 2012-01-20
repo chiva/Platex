@@ -174,6 +174,10 @@ QPushButton[digital=&quot;true&quot;]:pressed{
 	border-left-color: #554700;
 	border-bottom-color: #FFDD26;
 	border-right-color: #FFDD26;
+}
+
+QPushButton[digital=&quot;true&quot;]:disabled{
+    background-color: grey;
 }</string>
     </property>
     <property name="currentIndex">
@@ -3348,6 +3352,583 @@ QPushButton[digital=&quot;true&quot;]:pressed{
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>Secuenciador</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_7">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>20</y>
+        <width>91</width>
+        <height>161</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Controles</string>
+      </property>
+      <widget class="QPushButton" name="seqAddStep">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>31</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="seqStep">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>71</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>1</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="seqTime">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>71</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="suffix">
+        <string> ms</string>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>10000</number>
+       </property>
+       <property name="value">
+        <number>1000</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="seqControl">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>130</y>
+         <width>71</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Iniciar</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="seqDelStep">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>50</y>
+         <width>31</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="seqGbOut">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>10</y>
+        <width>521</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Salidas</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>19</y>
+         <width>501</width>
+         <height>36</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
+         <widget class="QLabel" name="seqDigL1">
+          <property name="text">
+           <string>3</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="seqDigL2">
+          <property name="text">
+           <string>4</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QLabel" name="seqDigL3">
+          <property name="text">
+           <string>5</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="seqDigL4">
+          <property name="text">
+           <string>6</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLabel" name="seqDigL5">
+          <property name="text">
+           <string>7</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="5">
+         <widget class="QLabel" name="seqDigL6">
+          <property name="text">
+           <string>8</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="seqDig1">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="digital" stdset="0">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="seqDig2">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="digital" stdset="0">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="seqDig3">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="digital" stdset="0">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QPushButton" name="seqDig4">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="digital" stdset="0">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QPushButton" name="seqDig5">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="digital" stdset="0">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="QPushButton" name="seqDig6">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="digital" stdset="0">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_9">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>90</y>
+        <width>521</width>
+        <height>481</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Servos</string>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>22</y>
+         <width>484</width>
+         <height>454</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_30">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_17">
+          <item>
+           <widget class="QGroupBox" name="seqGb1">
+            <property name="minimumSize">
+             <size>
+              <width>81</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="sizeIncrement">
+             <size>
+              <width>81</width>
+              <height>441</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Servo 9</string>
+            </property>
+            <widget class="QWidget" name="layoutWidget_8">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>77</width>
+               <height>391</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <item>
+               <widget class="QwtSlider" name="seqBar1">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="scalePosition">
+                 <enum>QwtSlider::RightScale</enum>
+                </property>
+                <property name="thumbLength">
+                 <number>20</number>
+                </property>
+                <property name="thumbWidth">
+                 <number>15</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="seqBox1">
+                <property name="suffix">
+                 <string>º</string>
+                </property>
+                <property name="maximum">
+                 <number>180</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="seqZero1">
+                <property name="text">
+                 <string>Cero</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_11">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="seqGb2">
+            <property name="minimumSize">
+             <size>
+              <width>81</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="sizeIncrement">
+             <size>
+              <width>81</width>
+              <height>441</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Servo 10</string>
+            </property>
+            <widget class="QWidget" name="layoutWidget_33">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>77</width>
+               <height>391</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_41">
+              <item>
+               <widget class="QwtSlider" name="seqBar2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="scalePosition">
+                 <enum>QwtSlider::RightScale</enum>
+                </property>
+                <property name="thumbLength">
+                 <number>20</number>
+                </property>
+                <property name="thumbWidth">
+                 <number>15</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="seqBox2">
+                <property name="suffix">
+                 <string>º</string>
+                </property>
+                <property name="maximum">
+                 <number>180</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="seqZero2">
+                <property name="text">
+                 <string>Cero</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_12">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="seqGb3">
+            <property name="minimumSize">
+             <size>
+              <width>81</width>
+              <height>421</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Servo 11</string>
+            </property>
+            <widget class="QWidget" name="layoutWidget_31">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>77</width>
+               <height>391</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_35">
+              <item>
+               <widget class="QwtSlider" name="seqBar3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="scalePosition">
+                 <enum>QwtSlider::RightScale</enum>
+                </property>
+                <property name="thumbLength">
+                 <number>20</number>
+                </property>
+                <property name="thumbWidth">
+                 <number>15</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="seqBox3">
+                <property name="suffix">
+                 <string>º</string>
+                </property>
+                <property name="maximum">
+                 <number>180</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="seqZero3">
+                <property name="text">
+                 <string>Cero</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_13">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="seqGb4">
+            <property name="minimumSize">
+             <size>
+              <width>81</width>
+              <height>421</height>
+             </size>
+            </property>
+            <property name="title">
+             <string>Servo 12</string>
+            </property>
+            <widget class="QWidget" name="layoutWidget_32">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>20</y>
+               <width>77</width>
+               <height>391</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_40">
+              <item>
+               <widget class="QwtSlider" name="seqBar4">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="scalePosition">
+                 <enum>QwtSlider::RightScale</enum>
+                </property>
+                <property name="thumbLength">
+                 <number>20</number>
+                </property>
+                <property name="thumbWidth">
+                 <number>15</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="seqBox4">
+                <property name="suffix">
+                 <string>º</string>
+                </property>
+                <property name="maximum">
+                 <number>180</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="seqZero4">
+                <property name="text">
+                 <string>Cero</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="seqButZero">
+          <property name="text">
+           <string>Todos cero</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>
@@ -3395,12 +3976,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setNum(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>167</y>
+     <x>143</x>
+     <y>112</y>
     </hint>
     <hint type="destinationlabel">
-     <x>267</x>
-     <y>149</y>
+     <x>269</x>
+     <y>77</y>
     </hint>
    </hints>
   </connection>
@@ -3411,12 +3992,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setNum(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>247</y>
+     <x>143</x>
+     <y>112</y>
     </hint>
     <hint type="destinationlabel">
-     <x>267</x>
-     <y>229</y>
+     <x>269</x>
+     <y>77</y>
     </hint>
    </hints>
   </connection>
@@ -3427,12 +4008,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setNum(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>327</y>
+     <x>143</x>
+     <y>112</y>
     </hint>
     <hint type="destinationlabel">
-     <x>267</x>
-     <y>309</y>
+     <x>269</x>
+     <y>77</y>
     </hint>
    </hints>
   </connection>
@@ -3443,12 +4024,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setNum(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>407</y>
+     <x>143</x>
+     <y>112</y>
     </hint>
     <hint type="destinationlabel">
-     <x>267</x>
-     <y>389</y>
+     <x>269</x>
+     <y>77</y>
     </hint>
    </hints>
   </connection>
@@ -3459,12 +4040,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setNum(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>141</x>
-     <y>487</y>
+     <x>143</x>
+     <y>112</y>
     </hint>
     <hint type="destinationlabel">
-     <x>270</x>
-     <y>467</y>
+     <x>272</x>
+     <y>77</y>
     </hint>
    </hints>
   </connection>
@@ -3475,12 +4056,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>521</x>
-     <y>226</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
     <hint type="destinationlabel">
-     <x>616</x>
-     <y>229</y>
+     <x>627</x>
+     <y>236</y>
     </hint>
    </hints>
   </connection>
@@ -3491,12 +4072,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>591</x>
-     <y>221</y>
+     <x>627</x>
+     <y>236</y>
     </hint>
     <hint type="destinationlabel">
-     <x>541</x>
-     <y>218</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
    </hints>
   </connection>
@@ -3507,12 +4088,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>596</x>
-     <y>223</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
     <hint type="destinationlabel">
-     <x>529</x>
-     <y>223</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
    </hints>
   </connection>
@@ -3523,12 +4104,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>560</x>
-     <y>233</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
     <hint type="destinationlabel">
-     <x>582</x>
-     <y>233</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
    </hints>
   </connection>
@@ -3539,12 +4120,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>525</x>
-     <y>358</y>
+     <x>321</x>
+     <y>361</y>
     </hint>
     <hint type="destinationlabel">
-     <x>592</x>
-     <y>359</y>
+     <x>627</x>
+     <y>366</y>
     </hint>
    </hints>
   </connection>
@@ -3555,12 +4136,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>584</x>
-     <y>349</y>
+     <x>627</x>
+     <y>366</y>
     </hint>
     <hint type="destinationlabel">
-     <x>536</x>
-     <y>349</y>
+     <x>321</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>
@@ -3571,12 +4152,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>544</x>
-     <y>350</y>
+     <x>321</x>
+     <y>361</y>
     </hint>
     <hint type="destinationlabel">
-     <x>588</x>
-     <y>358</y>
+     <x>321</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>
@@ -3587,12 +4168,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>578</x>
-     <y>350</y>
+     <x>321</x>
+     <y>361</y>
     </hint>
     <hint type="destinationlabel">
-     <x>547</x>
-     <y>345</y>
+     <x>321</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>
@@ -3603,12 +4184,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>492</x>
-     <y>226</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
     <hint type="destinationlabel">
-     <x>614</x>
-     <y>225</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
    </hints>
   </connection>
@@ -3619,12 +4200,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>575</x>
-     <y>234</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
     <hint type="destinationlabel">
-     <x>520</x>
-     <y>234</y>
+     <x>321</x>
+     <y>231</y>
     </hint>
    </hints>
   </connection>
@@ -3635,12 +4216,12 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>532</x>
-     <y>348</y>
+     <x>321</x>
+     <y>361</y>
     </hint>
     <hint type="destinationlabel">
-     <x>603</x>
-     <y>348</y>
+     <x>321</x>
+     <y>361</y>
     </hint>
    </hints>
   </connection>
@@ -3651,11 +4232,11 @@ QPushButton[digital=&quot;true&quot;]:pressed{
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>588</x>
+     <x>321</x>
      <y>361</y>
     </hint>
     <hint type="destinationlabel">
-     <x>535</x>
+     <x>321</x>
      <y>361</y>
     </hint>
    </hints>

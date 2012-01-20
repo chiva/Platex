@@ -11,7 +11,7 @@ from ui.mainwindow import MainWindow
 import resources_rc
 
 if __name__ == "__main__":
-    logging.basicConfig(format="%(levelname)-10s %(asctime)s %(message)s", level=logging.DEBUG)
+    logging.basicConfig(format="%(levelname)-8s %(asctime)s %(module)-12s %(message)s", level=logging.DEBUG)
 
     logger = logging.getLogger(__name__)
     os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))

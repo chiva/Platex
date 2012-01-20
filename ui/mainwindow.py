@@ -17,6 +17,7 @@ from digital import DigitalTab
 from pwm import PWMTab
 from servo import ServoTab
 from motor import MotorTab
+from sequencer import SequencerTab
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +50,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         if not self.board:
             self.close()
         else:
-            self.tabs = (ModeTab(self), DigitalTab(self), AnalogTab(self), PWMTab(self), ServoTab(self), MotorTab(self))
+            self.tabs = (ModeTab(self), DigitalTab(self), AnalogTab(self), PWMTab(self), ServoTab(self), MotorTab(self), SequencerTab(self))
             self.tabs[0].enterTab()
             
             self.it = util.Iterator(self.board)
