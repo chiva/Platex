@@ -1,0 +1,7 @@
+# http://docs.python.org/distutils/sourcedist.html#manifest-template
+
+include platex.pyw
+include resources_rc.py
+recursive-include avrdude *
+recursive-include pyfirmata *.py
+recursive-include ui *.py

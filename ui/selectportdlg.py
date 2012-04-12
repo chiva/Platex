@@ -139,7 +139,7 @@ class SelectPortDlg(QDialog):
                 error = u"No parece que haya ninguna placa conectada al puerto."
             elif output.find("ser_send()") != -1: # ser_send(): write error: sorry no info avail
                 error = u"Se produjo un error durante la comunicación con la placa.\nAsegúrate de que está correctamente conectada."
-            elif output.find("ser_open()") != -1: # ser_send(): write error: sorry no info avail
+            elif output.find("ser_open()") != -1: # ser_open(): ....
                 error = u"El puerto no se pudo abrir.\nAsegúrate de que ningún programa lo está usando."
             else:
                 error = u"Se produjo un error al programar la placa.\nComprueba el conexionado."
