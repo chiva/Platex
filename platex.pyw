@@ -14,8 +14,7 @@ if __name__ == "__main__":
     logging.basicConfig(format="%(levelname)-8s %(asctime)s %(module)-12s %(message)s", level=logging.DEBUG)
 
     logger = logging.getLogger(__name__)
-    os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
-    logger.debug("Current working dir: %s", os.getcwd())
+    logger.debug("Working dir: "+os.getcwd())
     app = QtGui.QApplication(sys.argv)
     app.setOrganizationName("Universidad de La Rioja")
     app.setOrganizationDomain("unirioja.es")

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import logging, serial, os
+import logging, serial, os, sys
 from PyQt4.QtGui import QDialog, QPushButton, QComboBox, QLabel, QStackedWidget, QHBoxLayout, QVBoxLayout, QWidget, QMessageBox
 from PyQt4.QtCore import QTimer, pyqtSlot, QProcess
 
@@ -114,19 +114,24 @@ class SelectPortDlg(QDialog):
 
     @pyqtSlot()
     def programBoard(self):
-        if not os.path.exists('./avrdude/PlatexFirmata.hex'):
-            logging.warning("Hexadecimal file not found")
+        appdir = os.path.dirname(sys.argv[0])
+        if not os.path.exists(os.path.join(appdir, "avrdude", "PlatexFirmata.hex")):
+            logging.error("Hexadecimal file not found")
             QMessageBox.warning(self, u"¡Atención!", u"No se pudo encontrar el fichero a programar")
             return
-        self.connectBtn.setEnabled(False)
         self.programBtn.setEnabled(False)
+        self.connectBtn.setEnabled(False)
         self.stackedWidget.setCurrentIndex(1)
         logging.debug("Programming Arduino board on "+self.portsCmb.currentText())
-        os.chdir("./avrdude")
+        appdir = os.path.dirname(sys.argv[0])
+        executable = os.path.join(appdir, "avrdude", "avrdude")
+        configuration = os.path.join(appdir, "avrdude", "avrdude.conf")
+        hexadecimal = os.path.join(appdir, "avrdude", "PlatexFirmata.hex")
         self.program = QProcess()
         # avrdude reference: http://www.ladyada.net/learn/avr/avrdude.html
-        command = "./avrdude" if POSIX else "avrdude"
-        self.program.start(command+" -q -V -C avrdude.conf -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:./PlatexFirmata.hex:i")
+        command = executable+" -q -V -C "+configuration+" -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:"+hexadecimal+":i"
+        logger.debug("avrdude call: "+command)
+        self.program.start(command)
         self.program.finished.connect(self.programFinished)
 
     @pyqtSlot()
@@ -148,7 +153,6 @@ class SelectPortDlg(QDialog):
             QMessageBox.warning(self, u"¡Atención!", error)
         else:
             logging.debug("Programmed successfully")
-        os.chdir("..")
         self.updatePorts(True)
         self.connectBtn.setEnabled(True)
         self.programBtn.setEnabled(True)

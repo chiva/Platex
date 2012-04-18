@@ -98,7 +98,7 @@ class SequencerTab(object):
     @pyqtSlot(int)
     def _loadStep(self, index):
         step = self.steps[index-1]
-        logger.debug("Loaded step "+index)
+        logger.debug("Loaded step "+str(index))
         self.index.blockSignals(True)
         self.index.setValue(index)
         self.index.blockSignals(False)

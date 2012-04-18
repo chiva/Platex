@@ -19,7 +19,6 @@ Platex_Target = Executable( script = "platex.pyw",
                             appendScriptToLibrary = False)
 
 include_files = ['avrdude/']
-#include_files = []
 
 build_exe_options = {"packages": [],
                      "excludes": [],

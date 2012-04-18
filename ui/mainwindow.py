@@ -31,7 +31,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         Default Constructor. It can receive a top window as parent. 
         """
         QMainWindow.__init__(self, parent)
-        logging.debug("Created MainWindow")
+        logger.debug("Created MainWindow")
         self.setupUi(self)
         
         for x in xrange(2, 20):
