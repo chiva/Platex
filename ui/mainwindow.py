@@ -64,3 +64,7 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         self.tabs[self.lastIndex].exitTab()
         self.tabs[index].enterTab()
         self.lastIndex = index
+
+    def closeEvent(self, event):
+        self.board.exit()
+        event.accept()
