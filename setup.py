@@ -27,5 +27,6 @@ build_exe_options = {"packages": [],
 setup(  name = "Platex",
         version = "0.1",
         description = "Control Arduino from your computer",
+        author = "Santiago Reig",
         options = {"build_exe": build_exe_options},
         executables = [Platex_Target])
