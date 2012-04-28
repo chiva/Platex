@@ -25,6 +25,7 @@ else:
     else:
         entry = sys.argv[0]
 
+entry = os.path.realpath(entry)
 appdir = os.path.dirname(entry)
 
 logger = logging.getLogger(__name__)
@@ -144,7 +145,7 @@ class SelectPortDlg(QDialog):
         hexadecimal = os.path.join(appdir, "avrdude", "PlatexFirmata.hex")
         self.program = QProcess()
         # avrdude reference: http://www.ladyada.net/learn/avr/avrdude.html
-        command = executable+" -q -V -C "+configuration+" -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:"+hexadecimal+":i"
+        command = "\""+executable+"\" -q -V -C \""+configuration+"\" -p atmega328p -c arduino -P "+self.portsCmb.currentText()+" -b 115200 -D -U flash:w:\""+hexadecimal+"\":i"
         logger.debug("avrdude call: "+command)
         self.program.start(command)
         self.program.finished.connect(self.programFinished)

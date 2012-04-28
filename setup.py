@@ -4,29 +4,33 @@ import sys, os
 from cx_Freeze import setup, Executable
 
 base = None
+targetName = "platex"
+includes = []
 if sys.platform == "win32":
     base = "Win32GUI"
-
-# For Win32: 'imageformat' folder from 'PYTHONDIR\lib\site-packages\PyQt4\plugins' must be added to project root so images can be loaded
+    targetName = "platex.exe"
+    includes.extend(['numpy.core.multiarray', 'serial.win32'])
 
 Platex_Target = Executable( script = "platex.pyw",
                             initScript = None,
-                            base = None,
-                            targetName = "platex",
+                            base = base,
+                            targetName = targetName,
                             compress = True,
                             copyDependentFiles = True,
                             appendScriptToExe = False,
-                            appendScriptToLibrary = False)
+                            appendScriptToLibrary = False,
+                            shortcutName = "Platex",
+                            shortcutDir = "ProgramMenuFolder")
 
 include_files = ['avrdude/']
 
 build_exe_options = {"packages": [],
+                     "includes": includes,
                      "excludes": [],
                      "include_files": include_files}
 
 setup(  name = "Platex",
         version = "0.1",
         description = "Control Arduino from your computer",
-        author = "Santiago Reig",
         options = {"build_exe": build_exe_options},
         executables = [Platex_Target])
