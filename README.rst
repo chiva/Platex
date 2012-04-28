@@ -4,9 +4,15 @@ Platex
 Platex is an experimentation platform based on Arduino, Firmata and Python that will allow you to interface with chips, sensors and shields without writing a single line of code.
 
 Installation
---------
+------------
 
+**Linux**
 
+Download the appropiate version for your Linux distribution from the Downloads_ section.
+
+To install and run the project in Ubuntu, download the latest ``deb`` package, install it by double-clicking and once finished run ``platex`` in a terminal.
+
+.. _Downloads: https://github.com/chiva/Platex/downloads
 
 Building
 --------
@@ -41,8 +47,6 @@ $ sudo bash -c "wget https://raw.github.com/gist/1427486/build-linux.sh && bash 
 DO NOT BUILD IN PRODUCTION ENVIROMENTS !!!
 
 When finished a ``Platex-dist`` folder will appear where you executed the script. It contains the ``rpm`` and ``deb`` package installers for the different flavours of Linux.
-
-To install and run the project in Ubuntu, double-click the ``deb`` package and when finished execute ``platex`` in a terminal.
 
 .. [#] For Linux 11.10 Oneiric Ocelot
 

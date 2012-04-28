@@ -12,13 +12,28 @@ if os.name == "posix":
     import glob
     POSIX = True
 
+# Code for getting app folder
+isfrozen = getattr(sys, 'frozen', False)
+if isfrozen:
+    if not sys.path or not sys.path[0]:
+        raise RuntimeError('Cannot determine app path because sys.path[0] is empty!')
+    else:
+        entry = sys.path[0]
+else:
+    if not sys.argv or not sys.argv[0]:
+        entry = '<interpreter>'
+    else:
+        entry = sys.argv[0]
+
+appdir = os.path.dirname(entry)
+
 logger = logging.getLogger(__name__)
 
 class SelectPortDlg(QDialog):
 
     def __init__(self, parent=None):
         QDialog.__init__(self, parent)
-        logging.debug("Port selection dialog created")
+        logger.debug("Port selection dialog created")
         statusLbl = QLabel("Programando el Arduino...")
         self.connectBtn = QPushButton("&Conectar")
         self.programBtn = QPushButton("&Programar")
@@ -60,6 +75,8 @@ class SelectPortDlg(QDialog):
         exitBtn.clicked.connect(self.reject)
         self.setWindowTitle(u"Iniciando comunicación")
         self.updatePorts(True)
+        
+        logger.debug("Working dir: "+appdir)
 
     @pyqtSlot()
     def updatePorts(self, force=False):
@@ -93,7 +110,7 @@ class SelectPortDlg(QDialog):
     @pyqtSlot()
     def connectBoard(self):
         try:
-            logging.debug("Connecting to Arduino board on port "+self.portsCmb.currentText())
+            logger.debug("Connecting to Arduino board on port "+self.portsCmb.currentText())
             board = Board(self.portsCmb.currentText(), BOARDS['arduino'])
         except ValueError, e:
             logger.warning(e)
@@ -108,22 +125,20 @@ class SelectPortDlg(QDialog):
             QMessageBox.warning(self, u"!Atención¡", unicode(e))
             self.updatePorts(True)
         else:
-            logging.debug("Using Arduino board on port "+board.sp.portstr)
+            logger.debug("Using Arduino board on port "+board.sp.portstr)
             self.board = board
             self.accept()
 
     @pyqtSlot()
     def programBoard(self):
-        appdir = os.path.dirname(sys.argv[0])
         if not os.path.exists(os.path.join(appdir, "avrdude", "PlatexFirmata.hex")):
-            logging.error("Hexadecimal file not found")
+            logger.error("Hexadecimal file not found")
             QMessageBox.warning(self, u"¡Atención!", u"No se pudo encontrar el fichero a programar")
             return
         self.programBtn.setEnabled(False)
         self.connectBtn.setEnabled(False)
         self.stackedWidget.setCurrentIndex(1)
-        logging.debug("Programming Arduino board on "+self.portsCmb.currentText())
-        appdir = os.path.dirname(sys.argv[0])
+        logger.debug("Programming Arduino board on "+self.portsCmb.currentText())
         executable = os.path.join(appdir, "avrdude", "avrdude")
         configuration = os.path.join(appdir, "avrdude", "avrdude.conf")
         hexadecimal = os.path.join(appdir, "avrdude", "PlatexFirmata.hex")
@@ -148,11 +163,11 @@ class SelectPortDlg(QDialog):
                 error = u"El puerto no se pudo abrir.\nAsegúrate de que ningún programa lo está usando."
             else:
                 error = u"Se produjo un error al programar la placa.\nComprueba el conexionado."
-                logging.warning("avrdude output: "+output)
-            logging.warning("An error ocurred: "+error)
+                logger.warning("avrdude output: "+output)
+            logger.warning("An error ocurred: "+error)
             QMessageBox.warning(self, u"¡Atención!", error)
         else:
-            logging.debug("Programmed successfully")
+            logger.debug("Programmed successfully")
         self.updatePorts(True)
         self.connectBtn.setEnabled(True)
         self.programBtn.setEnabled(True)
