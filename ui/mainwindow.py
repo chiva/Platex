@@ -66,5 +66,6 @@ class MainWindow(QMainWindow, Ui_mainWindow):
         self.lastIndex = index
 
     def closeEvent(self, event):
-        self.board.exit()
-        event.accept()
+        if hasattr(self.board, "exit"):
+            self.board.exit()
+            event.accept()

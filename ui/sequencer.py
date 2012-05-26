@@ -2,7 +2,7 @@
 
 import logging
 
-from PyQt4.QtCore import pyqtSlot
+from PyQt4.QtCore import pyqtSlot, QCoreApplication
 from functools import partial
 from time import sleep
 
@@ -66,6 +66,7 @@ class SequencerTab(object):
     def _sequencerControl(self):
         button = eval("self.mw.seqControl")
         button.setEnabled(False)
+        QCoreApplication.processEvents()
         for x in xrange(1, len(self.steps)+1):
             self._loadStep(x)
             sleep(self.steps[x-1].time/1000)
@@ -83,14 +84,14 @@ class SequencerTab(object):
         newStep.servo = curStep.servo[:]
         newStep.time = curStep.time
         self.steps.append(newStep)
-        logger.debug("Created step "+len(self.steps))
+        logger.debug("Created step "+str(len(self.steps)))
         self.index.setMaximum(len(self.steps))
         self._loadStep(len(self.steps))
 
     def _delStep(self):
         index = self.index.value()
         if index is not 1:
-            logger.debug("Deleted step "+index)
+            logger.debug("Deleted step "+str(index))
             self.steps.pop(index-1)
             self._loadStep(index-1)
             self.index.setMaximum(len(self.steps))
