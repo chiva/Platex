@@ -2040,7 +2040,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>77</width>
+              <width>61</width>
               <height>481</height>
              </rect>
             </property>
@@ -2121,7 +2121,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>77</width>
+              <width>61</width>
               <height>481</height>
              </rect>
             </property>
@@ -2202,7 +2202,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>77</width>
+              <width>61</width>
               <height>481</height>
              </rect>
             </property>
@@ -2283,7 +2283,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>77</width>
+              <width>61</width>
               <height>481</height>
              </rect>
             </property>
@@ -2364,7 +2364,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>77</width>
+              <width>61</width>
               <height>481</height>
              </rect>
             </property>
@@ -2445,7 +2445,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <rect>
               <x>10</x>
               <y>20</y>
-              <width>77</width>
+              <width>61</width>
               <height>481</height>
              </rect>
             </property>
@@ -3300,56 +3300,69 @@ QPushButton[digital=&quot;true&quot;]:disabled{
        </widget>
       </widget>
      </widget>
-     <widget class="QPushButton" name="motorBut0">
+     <widget class="QGroupBox" name="groupBox_8">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>170</y>
-        <width>101</width>
-        <height>23</height>
+        <x>40</x>
+        <y>160</y>
+        <width>121</width>
+        <height>111</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Motor Shield v1.0</string>
+      <property name="title">
+       <string>Modelo</string>
       </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="motorBut1">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>200</y>
-        <width>101</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Motor Shield v3.0</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="motorBut2">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>230</y>
-        <width>101</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Personalizado</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
+      <widget class="QPushButton" name="motorBut2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>101</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Personalizado</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="motorBut1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>50</y>
+         <width>101</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Motor Shield v3.0</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="motorBut0">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>101</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Motor Shield v1.0</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_7">
@@ -3359,8 +3372,8 @@ QPushButton[digital=&quot;true&quot;]:disabled{
      <widget class="QGroupBox" name="groupBox_7">
       <property name="geometry">
        <rect>
-        <x>640</x>
-        <y>20</y>
+        <x>570</x>
+        <y>10</y>
         <width>91</width>
         <height>161</height>
        </rect>
