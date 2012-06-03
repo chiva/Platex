@@ -67,9 +67,11 @@ class SequencerTab(object):
 
     def exitTab(self):
         logger.debug("Exiting sequencer tab")
-        for x in self.mw.board.pins:
-            if x.mode is 4:
+        for pin in self.servo:
+            if pin in self.suitableServo:
                 self._groupEnabled(self.servo.index(pin)+1, False)
+            else:
+                self._groupEnabled(self.servo.index(pin)+1, True)
 
     @pyqtSlot()
     def _sequencerControl(self):
