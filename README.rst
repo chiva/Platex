@@ -6,6 +6,12 @@ Platex is an experimentation platform based on Arduino, Firmata and Python that 
 Installation
 ------------
 
+**Windows**
+
+Download the windows installer from the Downloads_ section.
+
+Once the installation is completed a shortcut will appear in your *Start Menu*.
+
 **Linux**
 
 Download the appropiate version for your Linux distribution from the Downloads_ section.

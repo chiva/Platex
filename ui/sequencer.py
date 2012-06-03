@@ -12,7 +12,8 @@ class Step(object):
     
     def __init__(self):
         self.digital = [False for x in range(0, 6)]
-        self.servo = [0 for x in range(0, 4)]
+        self.servo = [0 for x in range(0, 3)]
+        self.pwm = [0 for x in range(0, 3)]
         self.time = 1000
 
 class SequencerTab(object):
@@ -22,10 +23,12 @@ class SequencerTab(object):
         self.sliders = list()
         self.digital = dict()
         self.servo = list()
+        self.pwm = list()
         self.steps = [Step()]
         self.index = eval("self.mw.seqStep")
         
-        for x in xrange(1, 5):
+        for x in xrange(1, 4):
+            # Servos
             slider = eval("self.mw.seqBar%d" % x)
             spinBox = eval("self.mw.seqBox%d" % x)
             slider.setRange(0, 180, 1)
@@ -37,8 +40,14 @@ class SequencerTab(object):
             spinBox.valueChanged[int].connect(partial(self._updateServo, x))
             eval("self.mw.seqZero%d" % x).clicked.connect(partial(self._zero, x-1))
             self.servo.append(int(eval("self.mw.seqGb%d" % x).property("title").toString().split()[1]))
+
+        for x in xrange(1, 4):
+            #PWM
+            eval("self.mw.seqBarP%d" % x).valueChanged.connect(partial(self._updatePWM, x))
+            self.pwm.append(int(eval("self.mw.seqGbP%d" % x).property("title").toString().split()[1]))
         
         for x in xrange(1, 7):
+            #Digitales
             button = eval("self.mw.seqDig%d" % x)
             button.toggled.connect(partial(self._clickDigital, x))
             button.setEnabled(False)
@@ -69,7 +78,7 @@ class SequencerTab(object):
         QCoreApplication.processEvents()
         for x in xrange(1, len(self.steps)+1):
             self._loadStep(x)
-            sleep(self.steps[x-1].time/1000)
+            sleep(float(self.steps[x-1].time)/1000)
         button.setEnabled(True)
 
     @pyqtSlot(int)
@@ -82,6 +91,7 @@ class SequencerTab(object):
         newStep = Step()
         newStep.digital = curStep.digital[:]
         newStep.servo = curStep.servo[:]
+        newStep.pwm = curStep.pwm[:]
         newStep.time = curStep.time
         self.steps.append(newStep)
         logger.debug("Created step "+str(len(self.steps)))
@@ -103,10 +113,12 @@ class SequencerTab(object):
         self.index.blockSignals(True)
         self.index.setValue(index)
         self.index.blockSignals(False)
-        for x in xrange(1, len(step.digital)):
+        for x in xrange(1, len(step.digital)+1):
             eval("self.mw.seqDig%d" % x).setChecked(step.digital[x-1])
-        for x in xrange(1, len(step.servo)):
+        for x in xrange(1, len(step.servo)+1):
             eval("self.mw.seqBox%d" % x).setValue(step.servo[x-1])
+        for x in xrange(1, len(step.pwm)+1):
+            eval("self.mw.seqBarP%d" % x).setValue(step.pwm[x-1])
         eval("self.mw.seqTime").setValue(step.time)
 
     @pyqtSlot(int)
@@ -152,16 +164,24 @@ class SequencerTab(object):
         eval("self.mw.seqZero%d" % group).setEnabled(state)
         eval("self.mw.seqBox%d" % group).setEnabled(state)
         self._activated(group, state)
+    
+    def _groupEnabledP(self, group, state):
+        eval("self.mw.seqBarP%d" % group).setEnabled(state)
+        eval("self.mw.seqBarP%d" % group).setValid(state)
+        eval("self.mw.seqLblP%d" % group).setEnabled(state)
 
     def _updateAvailable(self):
         self.suitableDig = list()
         self.suitableServo = list()
+        self.suitablePWM = list()
         
         # Search for pins set as output or servo modes
         for x in self.mw.board.pins:
             if x.mode is 1:
                 self.suitableDig.append(x.pin_number)
                 self.suitableServo.append(x.pin_number)
+            if x.mode is 3:
+                self.suitablePWM.append(x.pin_number)
         
         for pin in self.digital.keys():
             self.digital[pin].setEnabled(True if pin in self.suitableDig else False)
@@ -171,6 +191,11 @@ class SequencerTab(object):
                     self._groupEnabled(self.servo.index(pin)+1, True)
             else:
                 self._groupEnabled(self.servo.index(pin)+1, False)
+        for pin in self.pwm:
+            if pin in self.suitablePWM:
+                self._groupEnabledP(self.pwm.index(pin)+1, True)
+            else:
+                self._groupEnabledP(self.pwm.index(pin)+1, False)
 
     @pyqtSlot(int, int)
     def _updateServo(self, group, angle):
@@ -181,3 +206,11 @@ class SequencerTab(object):
         pin = int(eval("self.mw.seqGb%d" % group).property("title").toString().split()[1])
         logger.debug("Moved servo on pin "+str(pin)+" to "+str(angle)+"º")
         self.mw.board.pins[pin].write(angle)
+
+    @pyqtSlot(int, int)
+    def _updatePWM(self, group, value):
+        curStep = self.steps[self.index.value()-1]
+        curStep.pwm[group-1] = value
+        pin = int(eval("self.mw.seqGbP%d" % group).property("title").toString().split()[1])
+        logger.debug("Changed PWM on pin "+str(pin)+" to "+str(value))
+        self.mw.board.pins[pin].write(value/100)
