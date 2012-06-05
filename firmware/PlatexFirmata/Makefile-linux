@@ -46,14 +46,14 @@ USERLIBS = PFirmata
 USER_LOC = $(CURDIR)
 
 # Where do you keep the official Arduino software package?
-ARDUINO_DIR = ../../../arduino-1.0
+ARDUINO_DIR = ../../../arduino-1.0.1
 
 # Arduino model:
 ARDUINO_MODEL = uno
 
 # Where are tools like avr-gcc located on your system?
-#AVR_TOOLS_PATH = $(ARDUINO_DIR)/hardware/tools/avr/bin
-AVR_TOOLS_PATH = /usr/bin
+AVR_TOOLS_PATH = $(ARDUINO_DIR)/hardware/tools/avr/bin
+#AVR_TOOLS_PATH = /usr/bin
 
 # How to reset the device before downloading a new program.
 # These don't always work; if the default one doesn't work,
