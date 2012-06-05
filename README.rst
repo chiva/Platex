@@ -18,6 +18,8 @@ Download the appropiate version for your Linux distribution from the Downloads_ 
 
 To install and run the project in Ubuntu, download the latest ``deb`` package, install it by double-clicking and once finished run ``platex`` in a terminal.
 
+If an *Error 13* appears when connecting to the board, execute in a terminal ``usermod -a -G dialout YOUR_USER``, then logout and then in again. Now it should be working correctly.
+
 .. _Downloads: https://github.com/chiva/Platex/downloads
 
 Building
