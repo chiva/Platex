@@ -315,10 +315,11 @@ class Board(QObject):
     def exit(self):
         """ Call this to exit cleanly. """
         # First detach all servo's, otherwise it somehow doesn't want to close...
-        # FIXME
-        for pin in self.pins:
-            if pin.mode == SERVO:
-                pin.mode = OUTPUT
+        # Prevent exception when exiting and board has not been initialized
+        if hasattr(self, 'pins'):
+            for pin in self.pins:
+                if pin.mode == SERVO:
+                    pin.mode = OUTPUT
         if hasattr(self, 'sp'):
             self.sp.close()
 
