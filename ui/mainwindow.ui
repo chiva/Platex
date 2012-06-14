@@ -2853,7 +2853,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <widget class="QComboBox" name="motorDirA0">
               <item>
                <property name="text">
-                <string>13</string>
+                <string>12</string>
                </property>
               </item>
              </widget>
@@ -2955,7 +2955,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <widget class="QComboBox" name="motorPwmB0">
               <item>
                <property name="text">
-                <string>9</string>
+                <string>11</string>
                </property>
               </item>
              </widget>
@@ -2974,7 +2974,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <widget class="QComboBox" name="motorDirB0">
               <item>
                <property name="text">
-                <string>12</string>
+                <string>13</string>
                </property>
               </item>
              </widget>
@@ -3091,7 +3091,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
              <widget class="QComboBox" name="motorPwmA1">
               <item>
                <property name="text">
-                <string>10</string>
+                <string>3</string>
                </property>
               </item>
              </widget>
@@ -3605,7 +3605,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
         </rect>
        </property>
        <property name="text">
-        <string>Motor Shield v3.0</string>
+        <string>Motor Shield R3</string>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -3621,7 +3621,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
         </rect>
        </property>
        <property name="text">
-        <string>Motor Shield v1.0</string>
+        <string>Motor Shield 3.0</string>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -4521,7 +4521,6 @@ QPushButton[digital=&quot;true&quot;]:disabled{
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../resources.qrc"/>
   <include location="../resources.qrc"/>
  </resources>
  <connections>
