@@ -837,7 +837,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>357</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -856,7 +856,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>377</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -875,7 +875,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>397</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -897,7 +897,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>417</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -916,7 +916,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>437</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -935,7 +935,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>337</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -954,7 +954,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>580</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -973,7 +973,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -992,7 +992,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>480</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1011,7 +1011,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>500</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1030,7 +1030,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>520</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1049,7 +1049,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>7</y>
+        <y>10</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1077,7 +1077,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>520</x>
-        <y>457</y>
+        <y>450</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1096,7 +1096,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>457</y>
+        <y>450</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1115,7 +1115,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>457</y>
+        <y>450</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1134,7 +1134,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>580</x>
-        <y>457</y>
+        <y>450</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1153,7 +1153,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>600</x>
-        <y>457</y>
+        <y>450</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -1175,7 +1175,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
       <property name="geometry">
        <rect>
         <x>620</x>
-        <y>457</y>
+        <y>450</y>
         <width>20</width>
         <height>20</height>
        </rect>
@@ -4521,6 +4521,7 @@ QPushButton[digital=&quot;true&quot;]:disabled{
   </customwidget>
  </customwidgets>
  <resources>
+  <include location="../resources.qrc"/>
   <include location="../resources.qrc"/>
  </resources>
  <connections>
