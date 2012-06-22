@@ -63,8 +63,8 @@ class AnalogTab(object):
 
     def _updatePlot(self, channel):
         if self.mw.analogUnits.currentIndex() is 0:
-            self.bars[channel]['bar'].setValue(round(self.data[channel][HISTORY], 2))
-            self.bars[channel]['label'].setText(str(round(self.data[channel][HISTORY], 2)))
+            self.bars[channel]['bar'].setValue(round(self.data[channel][HISTORY], 1))
+            self.bars[channel]['label'].setText(str(round(self.data[channel][HISTORY], 1)))
         else:
             self.bars[channel]['bar'].setValue(int(self.data[channel][HISTORY]))
             self.bars[channel]['label'].setText(str(int(self.data[channel][HISTORY])))
