@@ -3,8 +3,19 @@ Platex
 
 Platex is an experimentation platform based on Arduino, Firmata and Python that will allow you to interface with chips, sensors and shields without writing a single line of code.
 
+.. image:: https://raw.github.com/chiva/Platex/gh-pages/images/configuration.jpg
+   :align: left
+   :target: https://raw.github.com/chiva/Platex/gh-pages/images/big/configuration.jpg
+.. image:: https://raw.github.com/chiva/Platex/gh-pages/images/analog.jpg
+   :target: https://raw.github.com/chiva/Platex/gh-pages/images/big/analog.jpg
+.. image:: https://raw.github.com/chiva/Platex/gh-pages/images/secuencer.jpg
+   :align: right
+   :target: https://raw.github.com/chiva/Platex/gh-pages/images/big/secuencer.jpg
+
 Installation
 ------------
+
+**NOTE**: packages versions should be updated for the script not to fail.
 
 **Windows**
 
