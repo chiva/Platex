@@ -6,7 +6,7 @@ Platex is an experimentation platform based on Arduino, Firmata and Python that 
 .. image:: https://raw.github.com/chiva/Platex/gh-pages/images/configuration.jpg
    :align: left
    :target: https://raw.github.com/chiva/Platex/gh-pages/images/big/configuration.jpg
-.. image:: https://raw.github.com/chiva/Platex/gh-pages/images/analog.jpg
+.. image:: https://raw.github.com/chiva/Platex/gh-pages/images/analogic.jpg
    :target: https://raw.github.com/chiva/Platex/gh-pages/images/big/analogic.jpg
 .. image:: https://raw.github.com/chiva/Platex/gh-pages/images/secuencer.jpg
    :align: right
