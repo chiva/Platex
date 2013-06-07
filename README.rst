@@ -1,7 +1,7 @@
 Platex
 ======
 
-Platex is an experimentation platform based on Arduino, Firmata and Python that will allow you to interface with chips, sensors and shields without writing a single line of code.
+Platex is an experimentation platform based on Arduino, Firmata and Python that will allow you to interface with chips, sensors and shields without writing a single line of code. It works in Windows, Linux and Mac OS.
 
 .. image:: https://raw.github.com/chiva/Platex/gh-pages/images/configuration.jpg
    :align: left
